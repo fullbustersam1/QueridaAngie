@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Adivina la Contraseña</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5eee6;
+            color: #5c4033;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .game-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+        }
+
+        h1 {
+            color: #8b3a3a;
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .word-display {
+            font-size: 2rem;
+            letter-spacing: 10px;
+            font-weight: bold;
+            margin: 30px 0;
+            color: #8b3a3a;
+            min-height: 50px;
+        }
+
+        .hangman-drawing {
+            font-size: 4rem;
+            color: #5c4033;
+            margin: 20px 0;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .keyboard {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .key {
+            background-color: #fff;
+            color: #8b3a3a;
+            border: 2px solid #8b3a3a;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: bold;
+        }
+
+        .key:hover {
+            background-color: #f5eee6;
+        }
+
+        .key:active {
+            transform: scale(0.95);
+        }
+
+        .key.disabled {
+            background-color: #ddd;
+            border-color: #bbb;
+            color: #888;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-action {
+            background-color: #8b3a3a;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .btn-action:hover {
+            background-color: #a64d4d;
+        }
+
+        .btn-action:active {
+            transform: scale(0.95);
+        }
+
+        .btn-secondary {
+            background-color: #f5eee6;
+            color: #8b3a3a;
+            border: 2px solid #8b3a3a;
+        }
+
+        .btn-secondary:hover {
+            background-color: #efdfd1;
+        }
+
+        .message {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .success {
+            color: #4CAF50;
+        }
+
+        .error {
+            color: #d32f2f;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="game-card">
+        <h1>Mini Reto</h1>
+        <p>Adivina la palabra secreta para obtener la contraseña.</p>
+
+        <div class="hangman-drawing" id="hangman-drawing">
+            <i class="fas fa-heart"></i><i class="fas fa-heart"></i><i class="fas fa-heart"></i><i
+                class="fas fa-heart"></i><i class="fas fa-heart"></i>
+        </div>
+
+        <p>Vidas restantes: <b id="attempts-left">5</b></p>
+
+        <div class="word-display" id="word-display">_ _ _ _ _ _ _ _ _ _</div>
+
+        <div class="message" id="game-message"></div>
+
+        <div class="keyboard" id="keyboard"></div>
+
+        <div style="margin-top: 20px;">
+            <button class="btn-action" onclick="initGame()" id="btn-restart" style="display: none;">Jugar de
+                Nuevo</button>
+            <a href="index.html" class="btn-action btn-secondary">Volver al Inicio</a>
+        </div>
+    </div>
+
+    <script>
+        const words = ["TUSGAFITAS", "AMORBONITO", "QUINCEABRIL"];
+        let currentWordIndex = 0;
+        let word = words[currentWordIndex];
+        let guessedLetters = [];
+        let attemptsLeft = 5;
+        const alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+
+        const wordDisplay = document.getElementById("word-display");
+        const keyboard = document.getElementById("keyboard");
+        const attemptsDisplay = document.getElementById("attempts-left");
+        const gameMessage = document.getElementById("game-message");
+        const btnRestart = document.getElementById("btn-restart");
+        const hangmanDrawing = document.getElementById("hangman-drawing");
+
+        // Etapas de dibujo simples usando emojis/iconos
+        const hangmanSteps = [
+            '😵',
+            '🤕',
+            '😟',
+            '😐',
+            '🙂',
+            '<i class="fas fa-heart"></i><i class="fas fa-heart"></i><i class="fas fa-heart"></i><i class="fas fa-heart"></i><i class="fas fa-heart"></i>'
+        ];
+
+        function initGame() {
+            word = words[currentWordIndex];
+            guessedLetters = [];
+            attemptsLeft = 5;
+            gameMessage.style.display = 'none';
+            btnRestart.style.display = 'none';
+            keyboard.style.display = 'flex';
+
+            updateDisplay();
+            updateKeyboard();
+            updateHangman();
+        }
+
+        function updateDisplay() {
+            let displayWord = "";
+            let hasWon = true;
+
+            for (let i = 0; i < word.length; i++) {
+                if (guessedLetters.includes(word[i])) {
+                    displayWord += word[i] + " ";
+                } else {
+                    displayWord += "_ ";
+                    hasWon = false;
+                }
+            }
+
+            wordDisplay.innerText = displayWord.trim();
+            attemptsDisplay.innerText = attemptsLeft;
+
+            if (hasWon) {
+                endGame(true);
+            } else if (attemptsLeft === 0) {
+                endGame(false);
+            }
+        }
+
+        function updateKeyboard() {
+            keyboard.innerHTML = "";
+            for (let i = 0; i < alphabet.length; i++) {
+                const letter = alphabet[i];
+                const btn = document.createElement("button");
+                btn.classList.add("key");
+                btn.innerText = letter;
+
+                if (guessedLetters.includes(letter)) {
+                    btn.classList.add("disabled");
+                    btn.disabled = true;
+                } else {
+                    btn.onclick = () => guess(letter);
+                }
+
+                keyboard.appendChild(btn);
+            }
+        }
+
+        function updateHangman() {
+            hangmanDrawing.innerHTML = hangmanSteps[attemptsLeft];
+        }
+
+        function guess(letter) {
+            if (guessedLetters.includes(letter) || attemptsLeft === 0) return;
+
+            guessedLetters.push(letter);
+
+            if (!word.includes(letter)) {
+                attemptsLeft--;
+            }
+
+            updateDisplay();
+            updateKeyboard();
+            updateHangman();
+        }
+
+        function endGame(won) {
+            keyboard.style.display = 'none';
+            gameMessage.style.display = 'block';
+            btnRestart.style.display = 'inline-block';
+
+            if (won) {
+                gameMessage.innerText = "¡Felicidades! La contraseña es: " + word;
+                gameMessage.className = "message success";
+                hangmanDrawing.innerHTML = '🎉🥳🥰';
+            } else {
+                gameMessage.innerText = "¡Oh no, perdiste! Inténtalo de nuevo.";
+                gameMessage.className = "message error";
+                currentWordIndex = (currentWordIndex + 1) % words.length;
+            }
+        }
+
+        initGame();
+    </script>
+</body>
+
+</html>

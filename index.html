@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Acceso - Querida Angie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f5eee6;
+            color: #5c4033;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        #login-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 350px;
+            width: 90%;
+            position: relative;
+            animation: popIn 0.8s ease forwards;
+        }
+
+        .login-card h2 {
+            color: #8b3a3a;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+
+        .login-card p {
+            color: #5c4033;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .login-card input {
+            width: 85%;
+            padding: 12px;
+            border: 2px solid #f5eee6;
+            border-radius: 10px;
+            font-size: 1rem;
+            text-align: center;
+            color: #5c4033;
+            outline: none;
+            transition: border-color 0.3s;
+            background: white;
+            margin-bottom: 15px;
+        }
+
+        .login-card input:focus {
+            border-color: #8b3a3a;
+        }
+
+        .login-card button {
+            margin-top: 10px;
+            background-color: #8b3a3a;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            width: 100%;
+            font-family: inherit;
+        }
+
+        .login-card button:hover {
+            background-color: #a64d4d;
+        }
+
+        .login-card button:active {
+            transform: scale(0.95);
+        }
+
+        .btn-secondary {
+            background-color: transparent !important;
+            border: 2px solid #8b3a3a !important;
+            color: #8b3a3a !important;
+            margin-top: 10px !important;
+        }
+
+        .btn-secondary:hover {
+            background-color: #fce4ec !important;
+            /* light visual feedback */
+        }
+
+        #error-msg {
+            color: #d32f2f;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            display: none;
+            font-weight: bold;
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="login-container">
+        <div class="login-card">
+            <h2>Contenido con Acceso Restringido 🔒</h2>
+            <p>Entiendo que pueda llegar a ser confuso, pero no te preocupes, solo quiero asegurarme que la <b>persona
+                    correcta</b> pueda ver esto.</p>
+            <input type="password" id="pass-input" placeholder="Ingresa la palabra secreta..." autocomplete="off">
+            <button id="btn-login">Ingresar 😊</button>
+            <button class="btn-secondary" onclick="window.location.href='ahorcado.html'">Averiguar Contraseña
+                🧐</button>
+            <p id="error-msg">Contraseña incorrecta. ¡Intruso detectado!</p>
+        </div>
+    </div>
+
+    <script>
+        const btnLogin = document.getElementById('btn-login');
+        const inputPass = document.getElementById('pass-input');
+
+        inputPass.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') verificarLogin();
+        });
+
+        btnLogin.addEventListener('click', verificarLogin);
+
+        function verificarLogin() {
+            const password = inputPass.value.trim().toUpperCase();
+            if (['TUSGAFITAS', 'AMORBONITO', 'QUINCEABRIL'].includes(password)) {
+                // Guarda la sesión válida para que Index.html sepa que se realizó el login correctamente
+                sessionStorage.setItem('authKey', 'authed_user_angie');
+                window.location.href = 'home.html';
+            } else {
+                document.getElementById('error-msg').style.display = 'block';
+                inputPass.value = '';
+            }
+        }
+    </script>
+</body>
+
+</html>

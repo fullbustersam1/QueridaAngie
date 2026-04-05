@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Recuerdas aquel día?</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    min-height: 100vh;
+    background: #2c1810;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, #4a2218 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, #3d1a10 0%, transparent 50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  .paper {
+    max-width: 720px;
+    width: 100%;
+    background: #fdf6ec;
+    background-image:
+      url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    border-radius: 2px;
+    padding: 70px 80px;
+    position: relative;
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.08),
+      0 8px 24px rgba(0,0,0,0.18),
+      0 24px 64px rgba(0,0,0,0.25),
+      inset 0 0 80px rgba(180,120,60,0.06);
+    animation: unfold 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transform-origin: top center;
+  }
+
+  @keyframes unfold {
+    from { opacity: 0; transform: scaleY(0.92) translateY(-10px); }
+    to   { opacity: 1; transform: scaleY(1) translateY(0); }
+  }
+
+  /* Líneas sutiles de papel */
+  .paper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      transparent,
+      transparent 31px,
+      rgba(180,140,90,0.12) 31px,
+      rgba(180,140,90,0.12) 32px
+    );
+    background-position: 0 68px;
+    pointer-events: none;
+    border-radius: 2px;
+  }
+
+  /* Margen izquierdo rojo */
+  .paper::after {
+    content: '';
+    position: absolute;
+    left: 58px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(180,60,60,0.2);
+    pointer-events: none;
+  }
+
+  .corner-ornament {
+    position: absolute;
+    font-size: 28px;
+    color: rgba(160,100,50,0.25);
+    font-family: 'Great Vibes', cursive;
+    line-height: 1;
+  }
+  .corner-ornament.tl { top: 18px; left: 22px; }
+  .corner-ornament.tr { top: 18px; right: 22px; }
+  .corner-ornament.bl { bottom: 18px; left: 22px; }
+  .corner-ornament.br { bottom: 18px; right: 22px; }
+
+  /* Ornamento floral SVG */
+  .floral-divider {
+    text-align: center;
+    margin: 28px 0;
+    color: #b07840;
+    font-size: 22px;
+    letter-spacing: 8px;
+    opacity: 0.6;
+  }
+
+  .date-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: #a07850;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: right;
+    margin-bottom: 38px;
+    font-style: italic;
+  }
+
+  h1.title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 52px;
+    color: #6b3a1f;
+    text-align: center;
+    margin-bottom: 8px;
+    line-height: 1.2;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .body-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17.5px;
+    line-height: 2;
+    color: #3d2810;
+    font-weight: 300;
+    text-align: justify;
+    hyphens: auto;
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+
+  .body-text p {
+    margin-bottom: 22px;
+  }
+
+  .body-text p:first-of-type::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 58px;
+    font-weight: 600;
+    float: left;
+    line-height: 0.8;
+    margin: 6px 10px -4px 0;
+    color: #8b4a20;
+  }
+
+  .highlight {
+    font-style: italic;
+    color: #7a3d1a;
+    font-weight: 400;
+  }
+
+  .fecha-especial {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 600;
+    color: #8b4a20;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(139,74,32,0.4);
+  }
+
+  .list-section {
+    margin: 8px 0 22px 28px;
+    padding: 0;
+  }
+
+  .list-section li {
+    list-style: none;
+    padding: 5px 0;
+    padding-left: 24px;
+    position: relative;
+    font-size: 17px;
+    color: #3d2810;
+    font-style: italic;
+  }
+
+  .list-section li::before {
+    content: counter(item) '.';
+    counter-increment: item;
+    position: absolute;
+    left: 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: #8b4a20;
+    font-style: normal;
+  }
+
+  ol.list-section { counter-reset: item; }
+
+  /* Photo placeholder */
+  .photo-wrap {
+    float: right;
+    margin: 0 0 20px 28px;
+    transform: rotate(2.5deg);
+    position: relative;
+  }
+
+  .photo-frame {
+    width: 158px;
+    background: white;
+    padding: 10px 10px 34px;
+    box-shadow:
+      2px 2px 6px rgba(0,0,0,0.18),
+      4px 4px 14px rgba(0,0,0,0.12);
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .photo-frame img {
+    display: block;
+    width: 100%;
+    height: 138px;
+    object-fit: cover;
+    filter: sepia(20%) contrast(1.05);
+  }
+
+  .photo-caption {
+    font-family: 'Great Vibes', cursive;
+    text-align: center;
+    color: #7a6040;
+    font-size: 15px;
+    margin-top: 8px;
+    line-height: 1;
+  }
+
+  .photo-tape {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-1deg);
+    width: 52px;
+    height: 20px;
+    background: rgba(220,200,140,0.6);
+    border: 1px solid rgba(180,160,100,0.3);
+  }
+
+  .closing {
+    text-align: center;
+    margin-top: 40px;
+    animation: fadeUp 0.8s 0.7s ease both;
+  }
+
+  .closing-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 38px;
+    color: #6b3a1f;
+    display: block;
+    line-height: 1.4;
+  }
+
+  .signature {
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+    color: #5a2e10;
+    display: block;
+    margin-top: 10px;
+  }
+
+  @media (max-width: 600px) {
+    .paper { padding: 50px 36px; }
+    h1.title { font-size: 38px; }
+    .photo-wrap { float: none; margin: 0 auto 24px; display: flex; justify-content: center; }
+    .paper::after { left: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="paper">
+
+  <!-- Ornamentos de esquina -->
+  <span class="corner-ornament tl">❧</span>
+  <span class="corner-ornament tr">❧</span>
+  <span class="corner-ornament bl">❧</span>
+  <span class="corner-ornament br">❧</span>
+
+  <div class="date-line">21 de Marzo &nbsp;·&nbsp; Un día que lo cambió todo</div>
+
+  <h1 class="title">¿Recuerdas aquel día?</h1>
+
+  <div class="floral-divider">✦ · · · ✦ · · · ✦</div>
+
+  <div class="body-text">
+
+    <p>
+      Tú llegabas aquel día a la universidad a visitar a Jessenia y yo me acerqué a saludarte,
+      aunque mi timidez por dentro me mataba. No te mentí al decirte que sentía como que ya te conocía,
+      pues aunque nunca te había visto antes en persona, recuerdo que tu bello rostro ya se encontraba
+      impregnado en mi memoria a través de fotografías. O esa es la explicación lógica… pues me gusta
+      pensar también que <span class="highlight">una conexión tan especial y tan genuina como la que se
+      dio contigo desde un inicio es como si nos hubiéramos ya conocido en varias vidas anteriores.</span>
+    </p>
+
+    <p>
+      Me gustaba mucho la risa que te daba cuando contábamos la anécdota de que yo era muy tímido e
+      intentaba escabullirme de tus intentos de hablarme, pues en esos momentos no entendía cómo
+      <span class="highlight">una mujer preciosa como tú quería acercarse a mí.</span>
+    </p>
+
+    <p>
+      Y te confieso algo: entre mi timidez del momento no quería quedarme sin poder invitarte a algo, por eso decidí comprarle helados a todos, aunque la razón específica eras tú.
+    </p>
+
+    <p>
+      Aquel <span class="fecha-especial">21 de Marzo</span>, entre dudas de no saber si iba a poder
+      asistir a la sustentación de mi mejor amiga, me alegro de todo corazón de dos cosas:
+    </p>
+
+    <ol class="list-section">
+      <li>De poder haber hecho todo lo posible por asistir.</li>
+      <li>De haber ido peinado ese día <em>(aunque luego ya me despeiné)</em></li>
+    </ol>
+
+    <!-- Foto con marco tipo polaroid -->
+    <div class="photo-wrap">
+      <div class="photo-tape"></div>
+      <div class="photo-frame">
+        <img src="../img/imagen1.png"
+             alt="Aquel día especial"
+             onerror="this.style.background='#e8d8c4';this.style.height='138px';this.removeAttribute('src')">
+        <div class="photo-caption">Aquel 21 de Marzo</div>
+      </div>
+    </div>
+
+    <p>
+      Y aunque suene cómico el segundo punto, ese día no sabía que iba a ser una fecha
+      muy especial y que conocería a <span class="highlight">una hermosa dama que cambiaría mi vida
+      rotundamente en 180 grados</span> y dejaría una huella imborrable incluso transcurriendo
+      3 años después.
+    </p>
+
+    <p>
+      Después de este día empezaba sin saberlo aún, recién, la escritura de los capítulos
+      más bellos y especiales llenos de mucho amor de este libro maravilloso llamado vida.
+    </p>
+
+  </div>
+
+  <div class="floral-divider" style="margin-top:36px;">✦ · · · ✦ · · · ✦</div>
+
+  <div class="closing">
+    <span class="closing-text">Realizado con mucho amor, Steev.</span>
+
+  </div>
+
+</div>
+
+  <div id="zoom-controls" style="position: fixed; top: 15px; right: 15px; z-index: 1000; display: flex; flex-direction: column; gap: 8px;">
+    <button onclick="zoomLetter(0.1)" title="Acercar" style="width: 40px; height: 40px; border-radius: 50%; background: #6b3a1f; color: white; border: none; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">+</button>
+    <button onclick="zoomLetter(-0.1)" title="Alejar" style="width: 40px; height: 40px; border-radius: 50%; background: #6b3a1f; color: white; border: none; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">−</button>
+  </div>
+
+  <script>
+    let currentZoom = 1;
+    function zoomLetter(step) {
+      currentZoom += step;
+      if (currentZoom < 0.4) currentZoom = 0.4;
+      if (currentZoom > 2.5) currentZoom = 2.5;
+      document.body.style.zoom = currentZoom;
+    }
+  </script>
+
+</body>
+</html>
