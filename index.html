@@ -155,7 +155,7 @@
             if (['TUSGAFITAS', 'AMORBONITO', 'QUINCEABRIL'].includes(password)) {
                 // Guarda la sesión válida para que Index.html sepa que se realizó el login correctamente
                 sessionStorage.setItem('authKey', 'authed_user_angie');
-                window.location.href = 'home.html';
+                window.location.href = 'portada.html';
             } else {
                 document.getElementById('error-msg').style.display = 'block';
                 inputPass.value = '';
@@ -163,5 +163,4 @@
         }
     </script>
 </body>
-
 </html>

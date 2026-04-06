@@ -118,6 +118,27 @@
                 margin-top: 20px;
                 padding-bottom: 20px;
             }
+
+            /* AJUSTE SECCIÓN 2 (CAPÍTULO 2) EN MÓVIL */
+            #panel2 h2 {
+                font-size: 2.2rem !important;
+                margin-top: 10px !important;
+            }
+
+            #panel2 p {
+                font-size: 1rem !important;
+                margin-bottom: 20px !important;
+                padding: 0 15px;
+            }
+
+            .calendar-card {
+                transform: scale(0.85);
+                margin-top: -10px;
+            }
+
+            .calendar-card div[style*="font-size: 9rem"] {
+                font-size: 6rem !important;
+            }
         }
 
         /* 2. LAPTOPS PEQUEÑAS (901px - 1400px) */
@@ -958,11 +979,16 @@
             }
         }
 
-        /* === ESTILOS REPRODUCTOR VIBRANTE (PANEL 4) === */
-        #panel4 {
+        /* === ESTILOS REPRODUCTOR VIBRANTE (PANEL 5) === */
+        #panel5 {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             color: #fff;
             overflow-y: auto;
+        }
+
+        /* ESTILO PARA LA CARTA (PANEL 4) */
+        #panel4 {
+            background-color: #f5eee6;
         }
 
         .music-title {
@@ -1762,35 +1788,7 @@
     </div>
 
 
-    <div id="start-container"
-        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, #fff5f7 0%, #fde4ec 100%); z-index: 999; perspective: 1500px; transition: opacity 1.5s ease 0.5s; padding: 20px; box-sizing: border-box;">
 
-        <div class="book-cover" id="book-cover-element">
-            <div class="book-spine">
-            </div>
-            <div class="book-crease"></div>
-
-            <div class="book-content-wrapper">
-                <h1>Las coordenadas de un amor que perdí</h1>
-                <div class="divider"></div>
-                <p
-                    style="color: #5c4033; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-bottom: 12px; line-height: 1.5;">
-                    Querida Angie, más que un sitio esta es nuestra historia. A partir de ahora realizaremos un
-                    recorrido por los
-                    capítulos que marcaron nuestro viaje desde el primer día. Al programar, pensar en cada detalle y
-                    escribir cada palabra, volví a navegar por nuestros mejores recuerdos; mi mayor deseo con este
-                    presente es que al leerlos, tú también puedas reencontrar el amor y las razones que nos hizo
-                    coincidir.</p>
-                <p
-                    style="color: #8b3a3a; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 350; font-style: italic; line-height: 1.5;">
-                    "Hay historias que son demasiadas valiosas para dejarlas inconclusas. Reconozco que en el camino
-                    perdí mis coordenadas y esta es mi manera mas honesta y sincera de encontrarlas de vuelta"</p>
-                <button id="btn-start">Abrir nuestra historia ✨</button>
-            </div>
-
-            <div class="book-marker"></div>
-        </div>
-    </div>
 
     <div id="mobile-warning">
         <div class="warning-card">
@@ -1944,33 +1942,124 @@
             <i class="fas fa-chevron-up"></i>
         </button>
 
-        <h2 style="font-family: 'Great Vibes', cursive; font-size: 4rem; color: #8b3a3a; margin-top: 20px; margin-bottom: 5px; text-shadow: 2px 2px 8px rgba(0,0,0,0.1); flex-shrink: 0; text-align: center;">
+        <h2
+            style="font-family: 'Great Vibes', cursive; font-size: 4rem; color: #8b3a3a; margin-top: 20px; margin-bottom: 5px; text-shadow: 2px 2px 8px rgba(0,0,0,0.1); flex-shrink: 0; text-align: center;">
             Capítulo 2: Nuestro Sí</h2>
-        
+
         <p style="color: #d81b60; font-size: 1.25rem; margin-bottom: 40px; text-align: center; font-weight: 600;">
             El día que comenzó nuestra mejor aventura.
         </p>
 
+
+
         <!-- Elemento visual: Calendario / Ticket -->
-        <div class="calendar-card" style="background: white; border-radius: 20px; box-shadow: 0 15px 35px rgba(139, 58, 58, 0.12); width: 85%; max-width: 360px; display: flex; flex-direction: column; overflow: hidden; align-items: center; position: relative; margin-bottom: 30px;">
-            <div style="background: #e65c7b; width: 100%; padding: 25px 0; text-align: center; color: white; display: flex; justify-content: center; align-items: center; gap: 15px; font-weight: 700; font-size: 1.4rem; letter-spacing: 3px;">
+        <div class="calendar-card"
+            style="background: white; border-radius: 20px; box-shadow: 0 15px 35px rgba(139, 58, 58, 0.12); width: 85%; max-width: 360px; display: flex; flex-direction: column; overflow: hidden; align-items: center; position: relative; margin-bottom: 30px;">
+            <div
+                style="background: #e65c7b; width: 100%; padding: 25px 0; text-align: center; color: white; display: flex; justify-content: center; align-items: center; gap: 15px; font-weight: 700; font-size: 1.4rem; letter-spacing: 3px;">
                 <span style="background: rgba(255,255,255,0.3); width: 12px; height: 12px; border-radius: 50%;"></span>
                 ABRIL 2023
                 <span style="background: rgba(255,255,255,0.3); width: 12px; height: 12px; border-radius: 50%;"></span>
             </div>
-            
-            <div style="font-size: 9rem; color: #5c4033; font-weight: 800; line-height: 1; margin: 30px 0 10px 0; text-shadow: 5px 5px 0 #ffe0e9;">
+
+            <div
+                style="font-size: 9rem; color: #5c4033; font-weight: 800; line-height: 1; margin: 30px 0 10px 0; text-shadow: 5px 5px 0 #ffe0e9;">
                 15
             </div>
-            
+
             <div style="display: flex; gap: 12px; margin-bottom: 25px;">
-                <i class="fas fa-heart" style="color: #d81b60; font-size: 1.8rem; filter: drop-shadow(0 2px 5px rgba(216,27,96,0.5));"></i>
+                <i class="fas fa-heart"
+                    style="color: #d81b60; font-size: 1.8rem; filter: drop-shadow(0 2px 5px rgba(216,27,96,0.5));"></i>
             </div>
-            
-            <div style="background: #fff5f7; width: 100%; padding: 25px 20px; box-sizing: border-box; text-align: center; border-top: 3px dashed #fcd2dc;">
-                <p style="color: #8b3a3a; font-family: 'Great Vibes', cursive; font-size: 2.2rem; margin: 0; line-height: 1.2;">Mi niña linda</p>
-                <p style="color: #a64d4d; font-size: 1.05rem; margin-top: 15px; line-height: 1.6; font-weight: 500;">Desde ese instante, las horas se miden en sonrisas y los días en momentos inolvidables a tu lado.</p>
+
+            <div
+                style="background: #fff5f7; width: 100%; padding: 25px 20px; box-sizing: border-box; text-align: center; border-top: 3px dashed #fcd2dc;">
+                <p
+                    style="color: #8b3a3a; font-family: 'Great Vibes', cursive; font-size: 2.2rem; margin: 0; line-height: 1.2;">
+                    Mi niña linda</p>
+                <p style="color: #a64d4d; font-size: 1.05rem; margin-top: 15px; line-height: 1.6; font-weight: 500;">
+                    Desde ese instante, las horas se miden en sonrisas y los días en momentos inolvidables a tu lado.
+                </p>
             </div>
+        </div>
+
+        <!-- RECUERDOS RASCABLES -->
+        <p
+            style="color: #d81b60; font-size: 1.1rem; margin-top: 5px; margin-bottom: 20px; text-align: center; font-weight: 600; max-width: 85%;">
+            Hay recuerdos que el tiempo intenta empañar. Usa tu dedo para despejarlos.
+        </p>
+
+        <div
+            style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-bottom: 30px; width: 100%; max-width: 1200px; padding: 0 15px; box-sizing: border-box;">
+
+            <div class="scratch-container"
+                style="position: relative; width: 300px; height: 350px; user-select: none; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15); touch-action: none; flex-shrink: 0;">
+                <div class="scratch-reward"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none;">
+                    <img src="img/capitulo2/image1.jpeg" style="width: 100%; height: 75%; object-fit: cover;"
+                        alt="Recuerdo 1">
+                    <div
+                        style="height: 25%; width: 100%; padding: 15px; box-sizing: border-box; text-align: center; background: #fff5f7; display: flex; align-items: center; justify-content: center;">
+                        <p
+                            style="color: #8b3a3a; font-family: 'Great Vibes', cursive; font-size: 1.8rem; margin: 0; line-height: 1;">
+                            Sentí que por fin había llegado a casa...</p>
+                    </div>
+                </div>
+                <canvas class="scratch-canvas" width="300" height="350"
+                    style="position: absolute; top: 0; left: 0; z-index: 10; cursor: crosshair; touch-action: none; background: transparent;"></canvas>
+            </div>
+
+            <div class="scratch-container"
+                style="position: relative; width: 300px; height: 350px; user-select: none; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15); touch-action: none; flex-shrink: 0;">
+                <div class="scratch-reward"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none;">
+                    <img src="img/capitulo2/image2.jpeg" style="width: 100%; height: 75%; object-fit: cover;"
+                        alt="Recuerdo 2">
+                    <div
+                        style="height: 25%; width: 100%; padding: 15px; box-sizing: border-box; text-align: center; background: #fff5f7; display: flex; align-items: center; justify-content: center;">
+                        <p
+                            style="color: #8b3a3a; font-family: 'Great Vibes', cursive; font-size: 1.8rem; margin: 0; line-height: 1;">
+                            Cada momento contigo se volvió un tesoro...</p>
+                    </div>
+                </div>
+                <canvas class="scratch-canvas" width="300" height="350"
+                    style="position: absolute; top: 0; left: 0; z-index: 10; cursor: crosshair; touch-action: none; background: transparent;"></canvas>
+            </div>
+
+            <div class="scratch-container"
+                style="position: relative; width: 300px; height: 350px; user-select: none; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15); touch-action: none; flex-shrink: 0;">
+                <div class="scratch-reward"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none;">
+                    <img src="img/capitulo2/image3.jpeg" style="width: 100%; height: 75%; object-fit: cover;"
+                        alt="Recuerdo 3">
+                    <div
+                        style="height: 25%; width: 100%; padding: 15px; box-sizing: border-box; text-align: center; background: #fff5f7; display: flex; align-items: center; justify-content: center;">
+                        <p
+                            style="color: #8b3a3a; font-family: 'Great Vibes', cursive; font-size: 1.7rem; margin: 0; line-height: 1;">
+                            Mi sonrisa favorita siempre será la tuya...</p>
+                    </div>
+                </div>
+                <canvas class="scratch-canvas" width="300" height="350"
+                    style="position: absolute; top: 0; left: 0; z-index: 10; cursor: crosshair; touch-action: none; background: transparent;"></canvas>
+            </div>
+
+            <div class="scratch-container"
+                style="position: relative; width: 300px; height: 350px; user-select: none; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15); touch-action: none; flex-shrink: 0;">
+                <div class="scratch-reward"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none;">
+                    <img src="img/capitulo2/image4.jpeg" style="width: 100%; height: 75%; object-fit: cover;"
+                        alt="Recuerdo 4">
+                    <div
+                        style="height: 25%; width: 100%; padding: 15px; box-sizing: border-box; text-align: center; background: #fff5f7; display: flex; align-items: center; justify-content: center;">
+                        <p
+                            style="color: #8b3a3a; font-family: 'Great Vibes', cursive; font-size: 1.8rem; margin: 0; line-height: 1;">
+                            El comienzo de la historia más hermosa...</p>
+                    </div>
+                </div>
+                <canvas class="scratch-canvas" width="300" height="350"
+                    style="position: absolute; top: 0; left: 0; z-index: 10; cursor: crosshair; touch-action: none; background: transparent;"></canvas>
+            </div>
+
         </div>
 
         <button id="down-arrow-btn-panel2" onclick="switchPanel(3)" class="scroll-arrow-down"
@@ -1988,12 +2077,14 @@
         <h2
             style="font-family: 'Great Vibes', cursive; font-size: 4rem; color: #8b3a3a; margin-top: 10px; margin-bottom: 10px; text-shadow: 2px 2px 8px rgba(0,0,0,0.1); flex-shrink: 0;">
             Capitulo 3: Recuerdos y Vivencias</h2>
-            
-        <div style="background-color: white; border: 2px dashed #d81b60; border-radius: 15px; padding: 20px 30px; margin: 10px auto 30px auto; max-width: 600px; width: 90%; text-align: center; box-shadow: 0 8px 20px rgba(216, 27, 96, 0.15); box-sizing: border-box; flex-shrink: 0;">
+
+        <div
+            style="background-color: white; border: 2px dashed #d81b60; border-radius: 15px; padding: 20px 30px; margin: 10px auto 30px auto; max-width: 600px; width: 90%; text-align: center; box-shadow: 0 8px 20px rgba(216, 27, 96, 0.15); box-sizing: border-box; flex-shrink: 0;">
             <div style="font-size: 2rem; margin-bottom: 10px;">📸</div>
             <p style="color: #5c4033; font-size: 1.1rem; line-height: 1.6; margin: 0;">
                 Este capítulo se encuentra lleno de Polaroids. Haz clic sobre cada foto oculta para revelarla.<br>
-                <b style="color: #d81b60; display: block; margin-top: 10px;">Desbloquea todas las imágenes para continuar con la historia.</b>
+                <b style="color: #d81b60; display: block; margin-top: 10px;">Desbloquea todas las imágenes para
+                    continuar con la historia.</b>
             </p>
         </div>
 
@@ -2223,14 +2314,7 @@
             window.location.href = 'index.html';
         }
 
-        const btnStart = document.getElementById('btn-start');
-        btnStart.addEventListener('click', iniciarExperiencia);
-
         function iniciarExperiencia() {
-            // Activar animación 3D del libro
-            document.getElementById('book-cover-element').classList.add('open-book');
-            document.getElementById('start-container').style.opacity = '0';
-
             audio = new Audio('tusgafitas.mp3');
             audio.loop = true; audio.volume = 0.5;
 
@@ -2246,35 +2330,33 @@
                 }
             }
 
-            audio.play().catch(e => console.log("Autoplay blocked", e));
+            audio.play().catch(e => console.log("Autoplay blocked by browser. Interaction may be required.", e));
 
             // Mostrar controles flotantes
             document.getElementById('music-container').style.display = 'flex';
 
+            // Mostrar pantalla de carga para disimular la lentitud del hilo principal
+            const loader = document.getElementById('panel-loader');
+            loader.style.display = 'flex';
+            // Forzar reflow para la transición CSS
+            void loader.offsetWidth;
+            loader.classList.add('show');
+
+            // Esperar a que el loader se fije en pantalla antes de ejecutar la carga pesada (800 nodos)
             setTimeout(() => {
-                document.getElementById('start-container').style.display = 'none';
+                document.getElementById('main-content').style.display = 'flex';
+                iniciarMagia();
+                populateHill();
 
-                // Mostrar pantalla de carga para disimular la lentitud del hilo principal
-                const loader = document.getElementById('panel-loader');
-                loader.style.display = 'flex';
-                // Forzar reflow para la transición CSS
-                void loader.offsetWidth;
-                loader.classList.add('show');
-
-                // Esperar a que el loader se fije en pantalla antes de ejecutar la carga pesada (800 nodos)
+                // Ocultar pantalla de precarga después de dar tiempo a que los FPS se estabilicen
                 setTimeout(() => {
-                    document.getElementById('main-content').style.display = 'flex';
-                    iniciarMagia();
-                    populateHill();
-
-                    // Ocultar pantalla de precarga después de dar tiempo a que los FPS se estabilicen
-                    setTimeout(() => {
-                        loader.classList.remove('show');
-                        setTimeout(() => loader.style.display = 'none', 500);
-                    }, 1200); // 1.2s de precarga simulada / estabilización
-                }, 100);
-            }, 1500); // Esperar que la animación de la portada del libro finalice (1.5s)
+                    loader.classList.remove('show');
+                    setTimeout(() => loader.style.display = 'none', 500);
+                }, 1200); // 1.2s de precarga simulada / estabilización
+            }, 100);
         }
+
+        window.addEventListener('load', iniciarExperiencia);
 
         function toggleMute() {
             if (!audio) return;
@@ -2974,6 +3056,135 @@ Texto de prueba, posterior se modificara por el verdero texto final`;
             // Cambiar video (sin autoplay, por solicitud previa)
             player.src = `https://www.youtube.com/embed/${videoID}?controls=1&rel=0`;
         }
+
+        // === 9. EFECTO RASCA Y GANA (SCRATCH CARDS) CAPÍTULO 2 ===
+        function initScratchCards() {
+            const canvases = document.querySelectorAll(".scratch-canvas");
+            canvases.forEach(canvas => {
+                const ctx = canvas.getContext("2d", { willReadFrequently: true });
+                if (!ctx) return;
+
+                let isDrawing = false;
+                let scratchCompleted = false;
+
+                // Llenar el canvas de gris metálizado / polvo
+                ctx.fillStyle = "#cfd8dc";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Añadir textura (motitas de polvo/cristal)
+                ctx.fillStyle = "#b0bec5";
+                for (let i = 0; i < 400; i++) {
+                    ctx.beginPath();
+                    ctx.arc(
+                        Math.random() * canvas.width,
+                        Math.random() * canvas.height,
+                        Math.random() * 4, // tamaño punto
+                        0, Math.PI * 2
+                    );
+                    ctx.fill();
+                }
+
+                // Mensaje que invita a rascar en el canvas
+                ctx.fillStyle = "#78909c";
+                ctx.font = "italic 16px 'Segoe UI', sans-serif";
+                ctx.textAlign = "center";
+                ctx.fillText("Usa tu dedo para despejar", canvas.width / 2, canvas.height / 2);
+
+                // Configurar el "borrador"
+                ctx.globalCompositeOperation = "destination-out";
+                ctx.lineJoin = "round";
+                ctx.lineCap = "round";
+                ctx.lineWidth = 45;
+
+                let scratchCount = 0;
+
+                function getMousePos(evt) {
+                    const rect = canvas.getBoundingClientRect();
+                    let clientX = evt.clientX;
+                    let clientY = evt.clientY;
+
+                    if (evt.touches && evt.touches.length > 0) {
+                        clientX = evt.touches[0].clientX;
+                        clientY = evt.touches[0].clientY;
+                    }
+
+                    return {
+                        x: (clientX - rect.left) * (canvas.width / rect.width),
+                        y: (clientY - rect.top) * (canvas.height / rect.height)
+                    };
+                }
+
+                function scratchStart(e) {
+                    if (scratchCompleted) return;
+                    isDrawing = true;
+                    const pos = getMousePos(e);
+                    ctx.beginPath();
+                    ctx.moveTo(pos.x, pos.y);
+                }
+
+                function scratchMove(e) {
+                    if (!isDrawing || scratchCompleted) return;
+                    if (e.cancelable) e.preventDefault(); // Evita el scroll del móvil al rascar
+                    const pos = getMousePos(e);
+                    ctx.lineTo(pos.x, pos.y);
+                    ctx.stroke();
+
+                    scratchCount++;
+                    if (scratchCount % 10 === 0) {
+                        checkScratchPercentage();
+                    }
+                }
+
+                function scratchEnd(e) {
+                    if (!isDrawing) return;
+                    isDrawing = false;
+                    checkScratchPercentage();
+                }
+
+                function checkScratchPercentage() {
+                    if (scratchCompleted) return;
+
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    const pixels = imageData.data;
+                    let transparentPixels = 0;
+
+                    // Salto de 4 píxeles (16 bytes) por rendimiento
+                    const step = 4;
+                    const totalChecked = pixels.length / (4 * step);
+
+                    for (let i = 3; i < pixels.length; i += 4 * step) {
+                        if (pixels[i] < 50) transparentPixels++;
+                    }
+
+                    const clearedPercentage = (transparentPixels / totalChecked) * 100;
+
+                    if (clearedPercentage >= 75) {
+                        scratchCompleted = true;
+                        canvas.style.transition = "opacity 1.5s ease-in-out";
+                        canvas.style.opacity = "0";
+                        setTimeout(() => {
+                            canvas.style.display = "none";
+                        }, 1500);
+                    }
+                }
+
+                // Eventos ratón
+                canvas.addEventListener("mousedown", scratchStart);
+                canvas.addEventListener("mousemove", scratchMove);
+                // Listeners en document para asegurar que deje de dibujar al soltar afuera
+                document.addEventListener("mouseup", scratchEnd);
+
+                // Eventos táctiles
+                canvas.addEventListener("touchstart", scratchStart, { passive: false });
+                canvas.addEventListener("touchmove", scratchMove, { passive: false });
+                document.addEventListener("touchend", scratchEnd);
+                canvas.addEventListener("touchcancel", scratchEnd);
+            });
+        }
+
+        // Iniciar en la carga
+        initScratchCards();
+
     </script>
 </body>
 
