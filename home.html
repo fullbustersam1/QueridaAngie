@@ -119,6 +119,8 @@
                 padding-bottom: 20px;
             }
 
+        }
+
             /* AJUSTE SECCIÓN 2 (CAPÍTULO 2) EN MÓVIL */
             #panel2 h2 {
                 font-size: 2.2rem !important;
@@ -134,12 +136,144 @@
             .calendar-card {
                 transform: scale(0.85);
                 margin-top: -10px;
+                flex-shrink: 0;
             }
 
             .calendar-card div[style*="font-size: 9rem"] {
                 font-size: 6rem !important;
             }
-        }
+
+            /* --- CHAPTER 2 STYLES --- */
+            .panel2-header {
+                font-family: 'Great Vibes', cursive;
+                font-size: 4rem;
+                color: #8b3a3a;
+                margin-top: 20px;
+                margin-bottom: 5px;
+                text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+                flex-shrink: 0;
+                text-align: center;
+            }
+
+            .panel2-subtitle {
+                color: #d81b60;
+                font-size: 1.25rem;
+                margin-bottom: 40px;
+                text-align: center;
+                font-weight: 600;
+                max-width: 90%;
+            }
+
+            .calendar-card-container {
+                background: white;
+                border-radius: 20px;
+                box-shadow: 0 15px 35px rgba(139, 58, 58, 0.12);
+                width: 85%;
+                max-width: 360px;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+                align-items: center;
+                position: relative;
+                margin-bottom: 30px;
+                flex-shrink: 0;
+            }
+
+            /* Responsive container for the 4 scratch cards */
+            .scratch-row {
+                display: flex;
+                flex-wrap: wrap; /* Allow wrapping on small screens to prevent cut-offs */
+                justify-content: center;
+                gap: 20px;
+                margin-bottom: 30px;
+                width: 100%;
+                max-width: 1200px;
+                padding: 0 15px;
+                box-sizing: border-box;
+            }
+
+            .scratch-container {
+                position: relative;
+                /* Scaled down width from 260px to 220px to fit 4 in most desktop screens easily */
+                width: 220px; 
+                height: 275px; /* Maintain aspect ratio */
+                user-select: none;
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+                touch-action: none;
+                flex-shrink: 0;
+            }
+
+            .scratch-reward {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                pointer-events: none;
+            }
+
+            .scratch-reward img {
+                width: 100%;
+                height: 70%;
+                object-fit: cover;
+            }
+
+            .scratch-reward-text-container {
+                height: 30%;
+                width: 100%;
+                padding: 10px;
+                box-sizing: border-box;
+                text-align: center;
+                background: #fff5f7;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .scratch-reward-text {
+                color: #8b3a3a;
+                font-family: 'Great Vibes', cursive;
+                font-size: 1.3rem; /* Slightly smaller text for the scaled down card */
+                margin: 0;
+                line-height: 1.1;
+                font-weight: bold;
+            }
+
+            .scratch-canvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+                /* Responsive canvas styling */
+                width: 100% !important;
+                height: 100% !important;
+                z-index: 10;
+                cursor: crosshair;
+                touch-action: none;
+                background: transparent;
+            }
+            
+            /* Overrides for mobile to adjust elements gracefully */
+            @media (max-width: 900px) {
+                 .panel2-header {
+                     font-size: 2.2rem;
+                     margin-top: 10px;
+                 }
+                 .panel2-subtitle {
+                     font-size: 1rem;
+                     margin-bottom: 20px;
+                 }
+                 .scratch-row {
+                     gap: 10px; /* Tighter gap on mobile */
+                 }
+            }
+        /* End of Panel 2 styles */
 
         /* 2. LAPTOPS PEQUEÑAS (901px - 1400px) */
         @media (min-width: 901px) and (max-width: 1400px) {
@@ -1954,7 +2088,7 @@
 
         <!-- Elemento visual: Calendario / Ticket -->
         <div class="calendar-card"
-            style="background: white; border-radius: 20px; box-shadow: 0 15px 35px rgba(139, 58, 58, 0.12); width: 85%; max-width: 360px; display: flex; flex-direction: column; overflow: hidden; align-items: center; position: relative; margin-bottom: 30px;">
+            style="background: white; border-radius: 20px; box-shadow: 0 15px 35px rgba(139, 58, 58, 0.12); width: 85%; max-width: 360px; display: flex; flex-direction: column; overflow: hidden; align-items: center; position: relative; margin-bottom: 30px; flex-shrink: 0;">
             <div
                 style="background: #e65c7b; width: 100%; padding: 25px 0; text-align: center; color: white; display: flex; justify-content: center; align-items: center; gap: 15px; font-weight: 700; font-size: 1.4rem; letter-spacing: 3px;">
                 <span style="background: rgba(255,255,255,0.3); width: 12px; height: 12px; border-radius: 50%;"></span>
@@ -1989,81 +2123,52 @@
             Hay recuerdos que el tiempo intenta empañar. Usa tu dedo para despejarlos.
         </p>
 
-        <div
-            style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-bottom: 30px; width: 100%; max-width: 1200px; padding: 0 15px; box-sizing: border-box;">
+        <div class="scratch-row">
 
-            <div class="scratch-container"
-                style="position: relative; width: 300px; height: 350px; user-select: none; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15); touch-action: none; flex-shrink: 0;">
-                <div class="scratch-reward"
-                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none;">
-                    <img src="img/capitulo2/image1.jpeg" style="width: 100%; height: 75%; object-fit: cover;"
-                        alt="Recuerdo 1">
-                    <div
-                        style="height: 25%; width: 100%; padding: 15px; box-sizing: border-box; text-align: center; background: #fff5f7; display: flex; align-items: center; justify-content: center;">
-                        <p
-                            style="color: #8b3a3a; font-family: 'Great Vibes', cursive; font-size: 1.8rem; margin: 0; line-height: 1;">
-                            Sentí que por fin había llegado a casa...</p>
+            <div class="scratch-container">
+                <div class="scratch-reward">
+                    <img src="img/capitulo2/image1.jpeg" alt="Recuerdo 1">
+                    <div class="scratch-reward-text-container">
+                        <p class="scratch-reward-text">Sentí que por fin había llegado a casa...</p>
                     </div>
                 </div>
-                <canvas class="scratch-canvas" width="300" height="350"
-                    style="position: absolute; top: 0; left: 0; z-index: 10; cursor: crosshair; touch-action: none; background: transparent;"></canvas>
+                <canvas class="scratch-canvas"></canvas>
             </div>
 
-            <div class="scratch-container"
-                style="position: relative; width: 300px; height: 350px; user-select: none; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15); touch-action: none; flex-shrink: 0;">
-                <div class="scratch-reward"
-                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none;">
-                    <img src="img/capitulo2/image2.jpeg" style="width: 100%; height: 75%; object-fit: cover;"
-                        alt="Recuerdo 2">
-                    <div
-                        style="height: 25%; width: 100%; padding: 15px; box-sizing: border-box; text-align: center; background: #fff5f7; display: flex; align-items: center; justify-content: center;">
-                        <p
-                            style="color: #8b3a3a; font-family: 'Great Vibes', cursive; font-size: 1.8rem; margin: 0; line-height: 1;">
-                            Cada momento contigo se volvió un tesoro...</p>
+            <div class="scratch-container">
+                <div class="scratch-reward">
+                    <img src="img/capitulo2/image2.jpeg" alt="Recuerdo 2">
+                    <div class="scratch-reward-text-container">
+                        <p class="scratch-reward-text">Cada momento contigo se volvió un tesoro...</p>
                     </div>
                 </div>
-                <canvas class="scratch-canvas" width="300" height="350"
-                    style="position: absolute; top: 0; left: 0; z-index: 10; cursor: crosshair; touch-action: none; background: transparent;"></canvas>
+                <canvas class="scratch-canvas"></canvas>
             </div>
 
-            <div class="scratch-container"
-                style="position: relative; width: 300px; height: 350px; user-select: none; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15); touch-action: none; flex-shrink: 0;">
-                <div class="scratch-reward"
-                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none;">
-                    <img src="img/capitulo2/image3.jpeg" style="width: 100%; height: 75%; object-fit: cover;"
-                        alt="Recuerdo 3">
-                    <div
-                        style="height: 25%; width: 100%; padding: 15px; box-sizing: border-box; text-align: center; background: #fff5f7; display: flex; align-items: center; justify-content: center;">
-                        <p
-                            style="color: #8b3a3a; font-family: 'Great Vibes', cursive; font-size: 1.7rem; margin: 0; line-height: 1;">
-                            Mi sonrisa favorita siempre será la tuya...</p>
+            <div class="scratch-container">
+                <div class="scratch-reward">
+                    <img src="img/capitulo2/image3.jpeg" alt="Recuerdo 3">
+                    <div class="scratch-reward-text-container">
+                        <p class="scratch-reward-text">Mi sonrisa favorita siempre será la tuya...</p>
                     </div>
                 </div>
-                <canvas class="scratch-canvas" width="300" height="350"
-                    style="position: absolute; top: 0; left: 0; z-index: 10; cursor: crosshair; touch-action: none; background: transparent;"></canvas>
+                <canvas class="scratch-canvas"></canvas>
             </div>
 
-            <div class="scratch-container"
-                style="position: relative; width: 300px; height: 350px; user-select: none; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15); touch-action: none; flex-shrink: 0;">
-                <div class="scratch-reward"
-                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none;">
-                    <img src="img/capitulo2/image4.jpeg" style="width: 100%; height: 75%; object-fit: cover;"
-                        alt="Recuerdo 4">
-                    <div
-                        style="height: 25%; width: 100%; padding: 15px; box-sizing: border-box; text-align: center; background: #fff5f7; display: flex; align-items: center; justify-content: center;">
-                        <p
-                            style="color: #8b3a3a; font-family: 'Great Vibes', cursive; font-size: 1.8rem; margin: 0; line-height: 1;">
-                            El comienzo de la historia más hermosa...</p>
+            <div class="scratch-container">
+                <div class="scratch-reward">
+                    <img src="img/capitulo2/image4.jpeg" alt="Recuerdo 4">
+                    <div class="scratch-reward-text-container">
+                        <p class="scratch-reward-text">El comienzo de la historia más hermosa...</p>
                     </div>
                 </div>
-                <canvas class="scratch-canvas" width="300" height="350"
-                    style="position: absolute; top: 0; left: 0; z-index: 10; cursor: crosshair; touch-action: none; background: transparent;"></canvas>
+                <canvas class="scratch-canvas"></canvas>
             </div>
 
         </div>
 
         <button id="down-arrow-btn-panel2" onclick="switchPanel(3)" class="scroll-arrow-down"
-            style="margin-top: 30px; margin-bottom: 20px; background: rgba(255,255,255,0.8); color: #8b3a3a; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; flex-shrink: 0;">
+            style="margin-top: 50px; margin-bottom: 80px; z-index: 100; background: rgba(255,255,255,0.8); color: #8b3a3a; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; flex-shrink: 0;">
             <i class="fas fa-chevron-down"></i>
         </button>
     </section>
@@ -3066,6 +3171,10 @@ Texto de prueba, posterior se modificara por el verdero texto final`;
 
                 let isDrawing = false;
                 let scratchCompleted = false;
+
+                // Ensure canvas size matches the responsive CSS container
+                canvas.width = canvas.parentElement.clientWidth;
+                canvas.height = canvas.parentElement.clientHeight;
 
                 // Llenar el canvas de gris metálizado / polvo
                 ctx.fillStyle = "#cfd8dc";
