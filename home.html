@@ -1121,14 +1121,19 @@
             }
         }
 
-        /* === ESTILOS REPRODUCTOR VIBRANTE (PANEL 5) === */
-        #panel5 {
+        /* === ESTILOS REPRODUCTOR VIBRANTE (PANEL 6) === */
+        #panel6 {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             color: #fff;
             overflow-y: auto;
         }
 
-        /* ESTILO PARA LA CARTA (PANEL 4) */
+        /* ESTILO PARA LA CARTA (PANEL 5) */
+        #panel5 {
+            background-color: #f5eee6;
+        }
+
+        /* ESTILO PARA CAPIITULO 3 PARTE 2 (PANEL 4) */
         #panel4 {
             background-color: #f5eee6;
         }
@@ -1943,7 +1948,7 @@
             max-width: 90%;
             max-height: 90%;
             border-radius: 10px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
             transform: scale(0.8);
             transition: transform 0.4s ease;
         }
@@ -1963,9 +1968,278 @@
             transition: transform 0.3s;
         }
 
-        .close-viewer-btn:hover {
-            transform: scale(1.2);
-            color: #ffb74d;
+        /* ==========================================
+           ROCKOLA (JUKEBOX) ESTILO Y MONEDAS
+           ========================================== */
+        .jukebox-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 900px;
+            position: relative;
+        }
+
+        .jukebox {
+            background-color: #d32f2f;
+            border: 15px solid #fff3e0;
+            border-radius: 90px 90px 20px 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            padding: 20px;
+            position: relative;
+            box-sizing: border-box;
+            background-image: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+        }
+
+        .jukebox-top {
+            background: #212121;
+            border-radius: 70px 70px 10px 10px;
+            padding: 15px;
+            border: 8px solid #9e9e9e;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8), 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .jukebox-glass {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 60px 60px 5px 5px;
+            padding: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .jukebox-middle {
+            background: #111;
+            border: 6px solid #bdbdbd;
+            border-radius: 10px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 10px #000;
+        }
+
+        .jukebox-label {
+            font-family: 'Great Vibes', cursive;
+            color: #d4af37;
+            font-size: 2.2rem;
+            text-shadow: 2px 2px 4px #000;
+            flex: 1;
+        }
+
+        .jukebox-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .knob {
+            width: 35px;
+            height: 35px;
+            background: radial-gradient(circle, #757575 0%, #212121 100%);
+            border-radius: 50%;
+            border: 2px solid #000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .display {
+            background: #000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 5px 15px;
+            border-radius: 5px;
+            border: 2px solid #333;
+            box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.2);
+        }
+
+        .coin-slot-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            position: relative;
+        }
+
+        .coin-slot {
+            width: 60px;
+            height: 80px;
+            background: #424242;
+            border: 4px solid #b0bec5;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), inset 0 0 10px #000;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .slot-hole {
+            width: 8px;
+            height: 50px;
+            background: #000;
+            border-radius: 4px;
+            box-shadow: inset 0 0 5px #000;
+        }
+
+        .coin-slot.highlight {
+            border-color: #ffeb3b;
+            box-shadow: 0 0 20px rgba(255, 235, 59, 0.8);
+            transform: scale(1.05);
+        }
+
+        .jukebox-bottom {
+            background: #cfd8dc;
+            height: 150px;
+            border-radius: 10px 10px 60px 60px;
+            border: 5px solid #9e9e9e;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .speaker-grille {
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000),
+                linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000);
+            background-color: #546e7a;
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.9;
+        }
+
+        .coins-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            min-height: 60px;
+            width: 100%;
+        }
+
+        .coin {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #fbc02d 0%, #f57f17 100%);
+            border: 3px solid #ffb300;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b71c1c;
+            font-size: 1.8rem;
+            cursor: grab;
+            transition: transform 0.2s, opacity 0.2s;
+            user-select: none;
+            touch-action: none;
+            z-index: 50;
+        }
+
+        .coin:active {
+            cursor: grabbing;
+        }
+
+        .coin.dragging {
+            opacity: 0.8;
+            transform: scale(1.1);
+        }
+
+        .track-item.locked {
+            opacity: 0.4;
+            filter: grayscale(100%);
+            cursor: not-allowed;
+            background: rgba(0, 0, 0, 0.3) !important;
+            transform: none !important;
+            pointer-events: auto;
+            /* Required to trigger onclick which will check block */
+        }
+
+        .unlocked-anim {
+            animation: unlockGlow 1.2s ease;
+        }
+
+        @keyframes unlockGlow {
+            0% {
+                box-shadow: 0 0 0 transparent;
+                opacity: 0.4;
+            }
+
+            40% {
+                box-shadow: 0 0 25px #4CAF50;
+                opacity: 1;
+                filter: grayscale(0%);
+                transform: scale(1.02);
+            }
+
+            100% {
+                box-shadow: 0 0 0 transparent;
+            }
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            75% {
+                transform: translateX(-5px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 800px) {
+            .jukebox {
+                border-radius: 50px 50px 15px 15px;
+                border-width: 8px;
+                padding: 10px;
+            }
+
+            .jukebox-top {
+                border-radius: 40px 40px 8px 8px;
+                padding: 10px;
+            }
+
+            .jukebox-glass {
+                border-radius: 30px 30px 5px 5px;
+                padding: 10px;
+            }
+
+            .jukebox-middle {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .coin-slot-area {
+                align-items: center;
+                width: 100%;
+            }
+
+            .coin-slot {
+                transform: rotate(90deg);
+                margin-top: 10px;
+            }
         }
     </style>
 </head>
@@ -2241,8 +2515,8 @@
             <i class="fas fa-chevron-up"></i>
         </button>
         <h2
-            style="font-family: 'Great Vibes', cursive; font-size: 4rem; color: #8b3a3a; margin-top: 10px; margin-bottom: 10px; text-shadow: 2px 2px 8px rgba(0,0,0,0.1); flex-shrink: 0;">
-            Capitulo 3: Recuerdos y Vivencias</h2>
+            style="font-family: 'Great Vibes', cursive; font-size: 4rem; color: #8b3a3a; margin-top: 10px; margin-bottom: 10px; text-shadow: 2px 2px 8px rgba(0,0,0,0.1); flex-shrink: 0; text-align: center;">
+            Capitulo 3: Recuerdos y Vivencias (Parte 1)</h2>
 
         <div
             style="background-color: white; border: 2px dashed #d81b60; border-radius: 15px; padding: 20px 30px; margin: 10px auto 30px auto; max-width: 600px; width: 90%; text-align: center; box-shadow: 0 8px 20px rgba(216, 27, 96, 0.15); box-sizing: border-box; flex-shrink: 0;">
@@ -2267,9 +2541,31 @@
     </section>
 
     <section id="panel4" class="panel"
+        style="background-color: #f5eee6; flex-direction: column; padding: 50px 0; justify-content: flex-start; align-items: center;">
+        <button id="up-arrow-btn-panel4" onclick="switchPanel(3)" class="scroll-arrow-up"
+            style="margin-bottom: 20px; background: rgba(255,255,255,0.8); color: #8b3a3a; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; flex-shrink: 0;">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+        <h2
+            style="font-family: 'Great Vibes', cursive; font-size: 4rem; color: #8b3a3a; margin-top: 10px; margin-bottom: 10px; text-shadow: 2px 2px 8px rgba(0,0,0,0.1); flex-shrink: 0; text-align: center;">
+            Capitulo 3: Recuerdos y Vivencias (Parte 2)</h2>
+
+        <div class="gallery-container" id="gallery-grid-2">
+            <!-- Cargado dinámicamente por JS -->
+        </div>
+        <button id="down-arrow-btn-panel4" onclick="switchPanel(5)" class="scroll-arrow-down"
+            style="margin-top: 50px; margin-bottom: 20px; background: rgba(255,255,255,0.8); color: #8b3a3a; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; flex-shrink: 0;">
+            <i class="fas fa-chevron-down"></i>
+        </button>
+
+        <!-- Espaciador para no chocar con el footer y dar aire al final -->
+        <div style="height: 150px; flex-shrink: 0;"></div>
+    </section>
+
+    <section id="panel5" class="panel"
         style="background-color: #f5eee6; flex-direction: column; padding: 60px 0; justify-content: flex-start; align-items: center; min-height: 100vh; overflow-y: auto;">
 
-        <button id="up-arrow-btn-panel4" onclick="switchPanel(3)" class="scroll-arrow-up"
+        <button id="up-arrow-btn-panel5" onclick="switchPanel(4)" class="scroll-arrow-up"
             style="background: rgba(255,255,255,0.8); color: #8b3a3a; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; margin-bottom: 30px; flex-shrink: 0;">
             <i class="fas fa-chevron-up"></i>
         </button>
@@ -2292,7 +2588,7 @@
             </div>
         </div>
 
-        <button id="down-arrow-btn-panel4" onclick="switchPanel(5)" class="scroll-arrow-down"
+        <button id="down-arrow-btn-panel5" onclick="switchPanel(6)" class="scroll-arrow-down"
             style="margin-top: 50px; background: rgba(255,255,255,0.8); color: #8b3a3a; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; flex-shrink: 0;">
             <i class="fas fa-chevron-down"></i>
         </button>
@@ -2300,10 +2596,10 @@
         <div style="height: 100px; flex-shrink: 0;"></div>
     </section>
 
-    <section id="panel5" class="panel"
+    <section id="panel6" class="panel"
         style="flex-direction: column; padding: 60px 0; justify-content: flex-start; align-items: center; min-height: 100vh;">
 
-        <button id="up-arrow-btn-panel5" onclick="switchPanel(4)" class="scroll-arrow-up"
+        <button id="up-arrow-btn-panel6" onclick="switchPanel(5)" class="scroll-arrow-up"
             style="background: rgba(255,255,255,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px); transition: all 0.3s ease; margin-bottom: 20px; flex-shrink: 0;">
             <i class="fas fa-chevron-up"></i>
         </button>
@@ -2320,64 +2616,105 @@
             <span>Recuerda activar el sonido en el reproductor de video</span>
         </div>
 
-        <div class="player-glass-card">
-            <div class="music-layout">
-                <div class="track-list" id="track-list">
-                    <!-- MAMI 100PRE SABE -->
-                    <div class="track-item" id="track-mami-sabe"
-                        onclick="seleccionarCancion('wGCtBWejgoc', 'track-mami-sabe')">
-                        <div class="track-icon"><i class="fas fa-play"></i></div>
-                        <div class="track-info">
-                            <h4>MAMI 100PRE SABE</h4>
-                            <p>Álvaro Díaz, NSQK</p>
-                        </div>
-                    </div>
-                    <!-- ANTES DE PERDERTE -->
-                    <div class="track-item" id="track-antes-de-perderte"
-                        onclick="seleccionarCancion('_zmjCoWvXYg', 'track-antes-de-perderte')">
-                        <div class="track-icon"><i class="fas fa-play"></i></div>
-                        <div class="track-info">
-                            <h4>ANTES DE PERDERTE</h4>
-                            <p>DUKI</p>
-                        </div>
-                    </div>
-                    <!-- YOKO -->
-                    <div class="track-item" id="track-yoko" onclick="seleccionarCancion('T89IqbAF9Ik', 'track-yoko')">
-                        <div class="track-icon"><i class="fas fa-play"></i></div>
-                        <div class="track-info">
-                            <h4>YOKO</h4>
-                            <p>Alvaro Diaz</p>
-                        </div>
-                    </div>
-                    <!-- JPN -->
-                    <div class="track-item" id="track-jpn" onclick="seleccionarCancion('q-xRAIiS3ao', 'track-jpn')">
-                        <div class="track-icon"><i class="fas fa-play"></i></div>
-                        <div class="track-info">
-                            <h4>JPN</h4>
-                            <p>Alvaro Diaz</p>
-                        </div>
-                    </div>
-                    <!-- CÓMO TE EXTRAÑO MI AMOR -->
-                    <div class="track-item" id="track-como-te-extrano"
-                        onclick="seleccionarCancion('IQPhLCkUugw', 'track-como-te-extrano')">
-                        <div class="track-icon"><i class="fas fa-play"></i></div>
-                        <div class="track-info">
-                            <h4>CÓMO TE EXTRAÑO MI AMOR</h4>
-                            <p>LEO DAN</p>
+        <div class="jukebox-container">
+            <div class="jukebox">
+                <!-- Jukebox Top Curve -->
+                <div class="jukebox-top">
+                    <div class="jukebox-glass">
+                        <div class="music-layout">
+                            <div class="track-list" id="track-list">
+                                <!-- MAMI 100PRE SABE -->
+                                <div class="track-item locked" id="track-mami-sabe" data-vid="wGCtBWejgoc"
+                                    data-tid="track-mami-sabe" onclick="seleccionarCancionRockola(this)">
+                                    <div class="track-icon"><i class="fas fa-lock"></i></div>
+                                    <div class="track-info">
+                                        <h4>MAMI 100PRE SABE</h4>
+                                        <p>Álvaro Díaz, NSQK</p>
+                                    </div>
+                                </div>
+                                <!-- ANTES DE PERDERTE -->
+                                <div class="track-item locked" id="track-antes-de-perderte" data-vid="_zmjCoWvXYg"
+                                    data-tid="track-antes-de-perderte" onclick="seleccionarCancionRockola(this)">
+                                    <div class="track-icon"><i class="fas fa-lock"></i></div>
+                                    <div class="track-info">
+                                        <h4>ANTES DE PERDERTE</h4>
+                                        <p>DUKI</p>
+                                    </div>
+                                </div>
+                                <!-- YOKO -->
+                                <div class="track-item locked" id="track-yoko" data-vid="T89IqbAF9Ik"
+                                    data-tid="track-yoko" onclick="seleccionarCancionRockola(this)">
+                                    <div class="track-icon"><i class="fas fa-lock"></i></div>
+                                    <div class="track-info">
+                                        <h4>YOKO</h4>
+                                        <p>Alvaro Diaz</p>
+                                    </div>
+                                </div>
+                                <!-- JPN -->
+                                <div class="track-item locked" id="track-jpn" data-vid="q-xRAIiS3ao"
+                                    data-tid="track-jpn" onclick="seleccionarCancionRockola(this)">
+                                    <div class="track-icon"><i class="fas fa-lock"></i></div>
+                                    <div class="track-info">
+                                        <h4>JPN</h4>
+                                        <p>Alvaro Diaz</p>
+                                    </div>
+                                </div>
+                                <!-- CÓMO TE EXTRAÑO MI AMOR -->
+                                <div class="track-item locked" id="track-como-te-extrano" data-vid="IQPhLCkUugw"
+                                    data-tid="track-como-te-extrano" onclick="seleccionarCancionRockola(this)">
+                                    <div class="track-icon"><i class="fas fa-lock"></i></div>
+                                    <div class="track-info">
+                                        <h4>CÓMO TE EXTRAÑO MI AMOR</h4>
+                                        <p>LEO DAN</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="video-container">
+                                <iframe id="yt-player" src="" title="YouTube video player"
+                                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="video-container">
-                    <iframe id="yt-player" src="" title="YouTube video player"
-                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen></iframe>
+                <!-- Jukebox Middle (Controls & Coin Slot) -->
+                <div class="jukebox-middle">
+                    <div class="jukebox-label">VICTROLA</div>
+                    <div class="jukebox-controls">
+                        <div class="knob"></div>
+                        <div class="display">10:00</div>
+                        <div class="knob"></div>
+                    </div>
+                    <!-- The Drop Zone -->
+                    <div class="coin-slot-area">
+                        <p style="color: #fff; font-size: 0.8rem; margin: 0 0 5px 0;">INSERTE MONEDA</p>
+                        <div class="coin-slot" id="coin-slot">
+                            <div class="slot-hole"></div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Jukebox Bottom Speaker grille -->
+                <div class="jukebox-bottom">
+                    <div class="speaker-grille"></div>
+                </div>
+            </div>
+
+            <!-- Coins -->
+            <div class="coins-container" id="coins-container">
+                <div class="coin" draggable="true" data-coin="1"><i class="fas fa-compact-disc"></i></div>
+                <div class="coin" draggable="true" data-coin="2"><i class="fas fa-compact-disc"></i></div>
+                <div class="coin" draggable="true" data-coin="3"><i class="fas fa-compact-disc"></i></div>
+                <div class="coin" draggable="true" data-coin="4"><i class="fas fa-compact-disc"></i></div>
+                <div class="coin" draggable="true" data-coin="5"><i class="fas fa-compact-disc"></i></div>
             </div>
         </div>
 
-        <p style="margin-top: 15px; color: rgba(255,255,255,0.5); font-size: 0.9rem;">Selecciona una canción para
-            revivir momentos ✨</p>
+        <p
+            style="margin-top: 25px; color: rgba(255,255,255,0.7); font-size: 1rem; text-align: center; font-weight: bold;">
+            Arrastra una moneda a la ranura para desbloquear la siguiente canción ✨</p>
 
         <div style="height: 100px; flex-shrink: 0;"></div>
     </section>
@@ -2675,17 +3012,21 @@
 
         // === 6. GALERÍA DINÁMICA CON CARGA PROGRESIVA ===
         function renderGallery() {
-            const grid = document.getElementById('gallery-grid');
-            if (!grid) return;
-            grid.innerHTML = "";
+            const grid1 = document.getElementById('gallery-grid');
+            const grid2 = document.getElementById('gallery-grid-2');
+            if (!grid1 || !grid2) return;
+            grid1.innerHTML = "";
+            grid2.innerHTML = "";
             const itemsDesbloqueados = JSON.parse(localStorage.getItem('unlocked_gallery_items') || "[]");
 
             const total = listaIDsGallery.length;
+            const halfPoint = Math.floor(total / 2);
             const batchSize = 15;
             let currentOffset = 0;
 
             function renderBatch() {
-                const fragment = document.createDocumentFragment();
+                const fragment1 = document.createDocumentFragment();
+                const fragment2 = document.createDocumentFragment();
                 const limit = Math.min(currentOffset + batchSize, total);
 
                 for (let i = currentOffset; i < limit; i++) {
@@ -2723,10 +3064,16 @@
                         img.loading = "lazy";
                         card.appendChild(img);
                     }
-                    fragment.appendChild(card);
+                    
+                    if (i < halfPoint) {
+                        fragment1.appendChild(card);
+                    } else {
+                        fragment2.appendChild(card);
+                    }
                 }
 
-                grid.appendChild(fragment);
+                grid1.appendChild(fragment1);
+                grid2.appendChild(fragment2);
                 currentOffset += batchSize;
 
                 if (currentOffset < total) {
@@ -3362,7 +3709,7 @@ Texto de prueba, posterior se modificara por el verdero texto final`;
         }
 
         // Funciones Visor de imágenes
-        window.openImageViewer = function(src) {
+        window.openImageViewer = function (src) {
             const modal = document.getElementById('image-viewer-modal');
             const img = document.getElementById('viewer-img');
             img.src = src;
@@ -3372,13 +3719,136 @@ Texto de prueba, posterior se modificara por el verdero texto final`;
             }, 10);
         }
 
-        window.closeImageViewer = function() {
+        window.closeImageViewer = function () {
             const modal = document.getElementById('image-viewer-modal');
             modal.classList.remove('show');
             setTimeout(() => {
                 modal.style.display = 'none';
                 document.getElementById('viewer-img').src = '';
             }, 400); // coincide con transición
+        }
+
+        // --- LÓGICA DE ROCKOLA ---
+        const trackItemsRockola = document.querySelectorAll('.jukebox .track-item');
+        let unclockedCount = 0;
+
+        function seleccionarCancionRockola(element) {
+            if (element.classList.contains('locked')) {
+                element.style.animation = 'shake 0.5s ease';
+                setTimeout(() => { element.style.animation = 'none'; }, 500);
+                return;
+            }
+            const vid = element.getAttribute('data-vid');
+            const tid = element.getAttribute('data-tid');
+            seleccionarCancion(vid, tid);
+        }
+
+        const coinsElements = document.querySelectorAll('.coin');
+        const coinSlot = document.getElementById('coin-slot');
+
+        coinsElements.forEach(coin => {
+            coin.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', coin.dataset.coin);
+                setTimeout(() => coin.classList.add('dragging'), 0);
+            });
+            coin.addEventListener('dragend', () => {
+                coin.classList.remove('dragging');
+            });
+
+            // Touch Events for mobile
+            coin.addEventListener('touchstart', handleCoinTouchStart, { passive: false });
+            coin.addEventListener('touchmove', handleCoinTouchMove, { passive: false });
+            coin.addEventListener('touchend', handleCoinTouchEnd);
+        });
+
+        coinSlot.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            coinSlot.classList.add('highlight');
+        });
+
+        coinSlot.addEventListener('dragleave', () => {
+            coinSlot.classList.remove('highlight');
+        });
+
+        coinSlot.addEventListener('drop', (e) => {
+            e.preventDefault();
+            coinSlot.classList.remove('highlight');
+            const coinId = e.dataTransfer.getData('text/plain');
+            const coin = document.querySelector(`.coin[data-coin="${coinId}"]`);
+            if (coin) {
+                processCoinDrop(coin);
+            }
+        });
+
+        let activeCoinEl = null;
+
+        function handleCoinTouchStart(e) {
+            if (unclockedCount >= trackItemsRockola.length) return;
+            activeCoinEl = e.target.closest('.coin');
+            if (!activeCoinEl) return;
+
+            activeCoinEl.style.position = 'absolute';
+            activeCoinEl.style.zIndex = '9999';
+            activeCoinEl.classList.add('dragging');
+        }
+
+        function handleCoinTouchMove(e) {
+            if (!activeCoinEl) return;
+            e.preventDefault(); // Prevent scrolling while dragging coin
+            const touch = e.touches[0];
+
+            activeCoinEl.style.left = (touch.clientX - activeCoinEl.offsetWidth / 2) + 'px';
+            activeCoinEl.style.top = (touch.clientY - activeCoinEl.offsetHeight / 2) + 'px';
+
+            const slotRect = coinSlot.getBoundingClientRect();
+            if (touch.clientX >= slotRect.left && touch.clientX <= slotRect.right &&
+                touch.clientY >= slotRect.top && touch.clientY <= slotRect.bottom) {
+                coinSlot.classList.add('highlight');
+            } else {
+                coinSlot.classList.remove('highlight');
+            }
+        }
+
+        function handleCoinTouchEnd(e) {
+            if (!activeCoinEl) return;
+
+            const touch = e.changedTouches[0];
+            const slotRect = coinSlot.getBoundingClientRect();
+
+            coinSlot.classList.remove('highlight');
+
+            if (touch.clientX >= slotRect.left && touch.clientX <= slotRect.right &&
+                touch.clientY >= slotRect.top && touch.clientY <= slotRect.bottom) {
+                processCoinDrop(activeCoinEl);
+            } else {
+                activeCoinEl.style.position = 'static';
+            }
+
+            activeCoinEl.classList.remove('dragging');
+            activeCoinEl = null;
+        }
+
+        function processCoinDrop(coin) {
+            coin.style.transition = 'all 0.3s ease';
+            coin.style.transform = 'scale(0.1)';
+            coin.style.opacity = '0';
+
+            setTimeout(() => {
+                coin.remove();
+                if (unclockedCount < trackItemsRockola.length) {
+                    const trackToUnlock = trackItemsRockola[unclockedCount];
+                    trackToUnlock.classList.remove('locked');
+                    trackToUnlock.classList.add('unlocked-anim');
+
+                    const iconWrap = trackToUnlock.querySelector('.track-icon');
+                    if (iconWrap) iconWrap.innerHTML = '<i class="fas fa-play"></i>';
+
+                    unclockedCount++;
+
+                    coinSlot.style.boxShadow = 'inset 0 0 15px #ffb300';
+                    setTimeout(() => coinSlot.style.boxShadow = 'inset 0 0 10px #000', 500);
+                }
+            }, 300);
         }
 
         // Iniciar en la carga
