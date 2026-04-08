@@ -2241,11 +2241,99 @@
                 margin-top: 10px;
             }
         }
+
+        /* Estilo para el Toast de Advertencia de Secciones */
+        .section-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(139, 58, 58, 0.95);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            z-index: 5000;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            pointer-events: none;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+        }
+
+        .section-toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        @keyframes shake-toast {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            25% {
+                transform: translateX(-55%) translateY(0);
+            }
+
+            75% {
+                transform: translateX(-45%) translateY(0);
+            }
+        }
+
+        .section-toast.shake {
+            animation: shake-toast 0.3s ease-in-out;
+        }
+
+        /* ==========================================
+           MODO INVITADO
+           ========================================== */
+        body.modo-invitado .scratch-reward img,
+        body.modo-invitado .scratch-reward-text,
+        body.modo-invitado .polaroid-img,
+        body.modo-invitado #visor-frame,
+        body.modo-invitado #visor-iframe,
+        body.modo-invitado #visor-video,
+        body.modo-invitado #letter-text,
+        body.modo-invitado .letter-photo-frame img {
+            filter: blur(8px) !important;
+            user-select: none !important;
+            pointer-events: none !important;
+        }
+
+        #guest-badge {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(139, 58, 58, 0.9);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            z-index: 4000;
+            display: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+        }
+
+        body.modo-invitado #guest-badge {
+            display: block;
+        }
     </style>
 </head>
 
 <body>
     <!-- Colina de pasto movida dentro de panel1 -->
+
+    <div id="guest-badge">👁️ Modo Invitado</div>
 
     <div id="music-container">
         <button id="music-control" class="float-btn" onclick="toggleMute()">
@@ -2737,17 +2825,37 @@
     </div>
 
     <script>
+        // === VARIABLES GLOBALES DE PROGRESO ===
+        let scratchCardsFinishedCount = 0;
+        let typewriterLetterFinished = false;
+
+        function showSectionToast(message) {
+            let toast = document.getElementById('section-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'section-toast';
+                toast.className = 'section-toast';
+                document.body.appendChild(toast);
+            }
+
+            toast.innerHTML = `<i class="fas fa-lock"></i> ${message}`;
+            toast.classList.add('show');
+            toast.classList.remove('shake');
+
+            // Forzar reflow para animación de shake si ya estaba visible
+            void toast.offsetWidth;
+            toast.classList.add('shake');
+
+            // Ocultar después de 3 segundos
+            clearTimeout(toast.timeout);
+            toast.timeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
         // === CONFIGURACIÓN ===
         const listaIDsGallery = [
-            "img/galery/3F887193-15D0-4058-A91A-787C4EB9E0DA.JPG",
-            "img/galery/62B73BEC-CA1C-4DDD-BFE1-5D0B751CFEEB.JPG",
-            "img/galery/64743466-02B7-4DA3-AFE4-942C93015DF2.JPG",
-            "img/galery/8DDAB2FE-61D4-4CE8-827A-7628AC4D814C.JPG",
-            "img/galery/9C36975E-BCEB-4DAB-831A-133AC99C8E19.MP4",
-            "img/galery/IMG_20250214_174736.jpg",
-            "img/galery/IMG_20250214_174819.jpg",
             "img/galery/whatsapp image 2026-03-29 at 1.14.29 pm.jpeg",
-            "img/galery/whatsapp image 2026-03-29 at 1.14.30 pm.jpeg",
             "img/galery/whatsapp image 2026-03-29 at 1.14.32 pm.jpeg",
             "img/galery/whatsapp image 2026-03-29 at 1.14.33 pm (1).jpeg",
             "img/galery/whatsapp image 2026-03-29 at 1.14.33 pm.jpeg",
@@ -2772,7 +2880,6 @@
             "img/galery/whatsapp image 2026-03-29 at 1.14.40 pm (5).jpeg",
             "img/galery/whatsapp image 2026-03-29 at 1.14.40 pm.jpeg",
             "img/galery/whatsapp image 2026-03-29 at 1.14.41 pm (1).jpeg",
-            "img/galery/whatsapp image 2026-03-29 at 1.14.41 pm.jpeg",
             "img/galery/whatsapp image 2026-03-29 at 1.14.42 pm (1).jpeg",
             "img/galery/whatsapp image 2026-03-29 at 1.14.42 pm (2).jpeg",
             "img/galery/whatsapp image 2026-03-29 at 1.14.42 pm (3).jpeg",
@@ -2791,7 +2898,14 @@
             "img/galery/whatsapp image 2026-03-29 at 1.14.49 pm.jpeg",
             "img/galery/whatsapp video 2026-03-29 at 1.14.37 pm.mp4",
             "img/galery/whatsapp video 2026-03-29 at 1.14.45 pm (1).mp4",
-            "img/galery/whatsapp video 2026-03-29 at 1.14.45 pm.mp4"
+            "img/galery/whatsapp video 2026-03-29 at 1.14.45 pm.mp4",
+            "img/galery/3F887193-15D0-4058-A91A-787C4EB9E0DA.JPG",
+            "img/galery/62B73BEC-CA1C-4DDD-BFE1-5D0B751CFEEB.JPG",
+            "img/galery/64743466-02B7-4DA3-AFE4-942C93015DF2.JPG",
+            "img/galery/8DDAB2FE-61D4-4CE8-827A-7628AC4D814C.JPG",
+            "img/galery/9C36975E-BCEB-4DAB-831A-133AC99C8E19.MP4",
+            "img/galery/IMG_20250214_174736.jpg",
+            "img/galery/IMG_20250214_174819.jpg"
         ];
         const listaIDsRecuerdos = [
             "img/recuerdo/img02.jpeg",
@@ -2881,6 +2995,14 @@
 
         // === 2. LÓGICA DE TERNURA (MARIPOSAS) ===
         const MODO_PRUEBAS = false; // 
+
+        const MODO_INVITADO = true; // Cambiar a true para difuminar fotos y cartas a invitados
+
+        if (MODO_INVITADO) {
+            document.body.classList.add('modo-invitado');
+        }
+
+
         let scoreTernura = 0;
         let memoriasDesbloqueadas = false;
 
@@ -3434,19 +3556,55 @@
         function switchPanel(targetPanel) {
             if (panelActualActivo === targetPanel) return;
 
-            // Bloqueo de avance si no hay ternura suficiente en la Misión 1 (Mariposas)
-            if (targetPanel >= 2 && !memoriasDesbloqueadas && !MODO_PRUEBAS) {
-                const hint = document.getElementById('hint-mariposas');
-                if (hint) {
-                    hint.style.transform = 'scale(1.1)';
-                    setTimeout(() => hint.style.transform = 'scale(1)', 300);
+            // --- LÓGICA DE BLOQUEO POR REQUISITOS ---
+            if (targetPanel > panelActualActivo && !MODO_PRUEBAS) {
+                // Bloqueo Panel 1 -> 2 (Misión Mariposas)
+                if (panelActualActivo === 1 && !memoriasDesbloqueadas) {
+                    showSectionToast("Debes completar la misión de las mariposas.");
+                    const hint = document.getElementById('hint-mariposas');
+                    if (hint) {
+                        hint.style.transform = 'scale(1.1)';
+                        setTimeout(() => hint.style.transform = 'scale(1)', 300);
+                    }
+                    return;
                 }
-                const btn = document.getElementById('down-arrow-btn');
-                if (btn) {
-                    btn.classList.add('shake-active');
-                    setTimeout(() => btn.classList.remove('shake-active'), 500);
+
+                // Bloqueo Panel 2 -> 3 (Capítulo 2: Raspaditas)
+                if (panelActualActivo === 2 && scratchCardsFinishedCount < 4) {
+                    showSectionToast("Debes completar las 4 raspaditas para continuar.");
+                    return;
                 }
-                return;
+
+                // Bloqueo Panel 3 -> 4 (Capítulo 3 Parte 1: Galería)
+                if (panelActualActivo === 3) {
+                    const unlocked = JSON.parse(localStorage.getItem('unlocked_gallery_items') || "[]");
+                    const totalPart1 = Math.floor(listaIDsGallery.length / 2);
+                    let countPart1 = 0;
+                    for (let i = 0; i < totalPart1; i++) { if (unlocked.includes(i)) countPart1++; }
+                    if (countPart1 < totalPart1) {
+                        showSectionToast("Debes revelar todas las Polaroids de esta parte.");
+                        return;
+                    }
+                }
+
+                // Bloqueo Panel 4 -> 5 (Capítulo 3 Parte 2: Galería)
+                if (panelActualActivo === 4) {
+                    const unlocked = JSON.parse(localStorage.getItem('unlocked_gallery_items') || "[]");
+                    const total = listaIDsGallery.length;
+                    const totalPart1 = Math.floor(total / 2);
+                    let countPart2 = 0;
+                    for (let i = totalPart1; i < total; i++) { if (unlocked.includes(i)) countPart2++; }
+                    if (countPart2 < (total - totalPart1)) {
+                        showSectionToast("Debes revelar todas las Polaroids para continuar.");
+                        return;
+                    }
+                }
+
+                // Bloqueo Panel 5 -> 6 (Capítulo 4: Carta / Typewriter)
+                if (panelActualActivo === 5 && !typewriterLetterFinished) {
+                    showSectionToast("Debes terminar de leer la carta primero.");
+                    return;
+                }
             }
 
             // Iniciar pantalla de carga
@@ -3556,6 +3714,7 @@ Texto de prueba, posterior se modificara por el verdero texto final`;
                 } else {
                     cursor.remove();
                     signature.classList.add('show');
+                    typewriterLetterFinished = true;
                 }
             }
 
@@ -3684,6 +3843,7 @@ Texto de prueba, posterior se modificara por el verdero texto final`;
 
                     if (clearedPercentage >= 75) {
                         scratchCompleted = true;
+                        scratchCardsFinishedCount++;
                         canvas.style.transition = "opacity 1.5s ease-in-out";
                         canvas.style.opacity = "0";
                         setTimeout(() => {
