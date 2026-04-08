@@ -5,20 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Acceso - Querida Angie</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <style>
         body {
-            background-color: #f5eee6;
-            color: #5c4033;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at center, #FFF0F5 0%, #E8D3D8 100%);
+            color: #5C4048;
+            font-family: 'Lora', serif;
             margin: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
             overflow: hidden;
+            position: relative;
+        }
+
+        /* Decoraciones flotantes de fondo */
+        .decoration {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #D49BAF;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
         }
 
         #login-container {
@@ -27,116 +54,229 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 10;
         }
 
         .login-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            background-color: #FFF5F6;
+            background-image:
+                radial-gradient(circle at 100% 50%, transparent 20%, rgba(220, 180, 190, 0.05) 21%, rgba(220, 180, 190, 0.05) 34%, transparent 35%, transparent),
+                radial-gradient(circle at 0% 50%, transparent 20%, rgba(220, 180, 190, 0.05) 21%, rgba(220, 180, 190, 0.05) 34%, transparent 35%, transparent);
+            background-size: 10px 10px;
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(120, 80, 90, 0.15), inset 0 0 0 1px rgba(212, 175, 55, 0.3), inset 0 0 20px rgba(212, 175, 55, 0.1);
             text-align: center;
-            max-width: 350px;
+            max-width: 380px;
             width: 90%;
             position: relative;
-            animation: popIn 0.8s ease forwards;
+            animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            border-top: 5px solid #D49BAF;
+        }
+
+        .ornament {
+            margin-bottom: 20px;
+            color: #DDA7B0;
+        }
+
+        .ornament svg {
+            width: 80px;
+            height: auto;
         }
 
         .login-card h2 {
+            font-family: 'Great Vibes', cursive;
             color: #8b3a3a;
             margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 1.8rem;
+            margin-bottom: 5px;
+            font-size: 3rem;
+            font-weight: normal;
         }
 
         .login-card p {
-            color: #5c4033;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
+            color: #785A63;
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            font-style: italic;
+            padding: 0 10px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+            width: 100%;
         }
 
         .login-card input {
-            width: 85%;
-            padding: 12px;
-            border: 2px solid #f5eee6;
-            border-radius: 10px;
-            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 16px 45px 16px 20px;
+            border: 1px solid #E8B4C8;
+            border-radius: 30px;
+            font-size: 1.05rem;
+            font-family: 'Lora', serif;
             text-align: center;
-            color: #5c4033;
+            color: #5C4048;
+            background: rgba(255, 255, 255, 0.8);
             outline: none;
-            transition: border-color 0.3s;
-            background: white;
-            margin-bottom: 15px;
+            transition: all 0.3s;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.03);
+        }
+
+        .login-card input::placeholder {
+            color: #B8828F;
+            font-style: italic;
         }
 
         .login-card input:focus {
-            border-color: #8b3a3a;
+            border-color: #D49BAF;
+            background: white;
+            box-shadow: 0 0 15px rgba(212, 155, 175, 0.4);
         }
 
-        .login-card button {
-            margin-top: 10px;
-            background-color: #8b3a3a;
+        .input-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #D49BAF;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .login-card input:focus+.input-icon {
+            color: #8b3a3a;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to bottom, #D49BAF, #C17C95);
             color: white;
             border: none;
-            padding: 12px 30px;
-            font-size: 1.1rem;
-            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 1.15rem;
+            border-radius: 30px;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.1s;
+            transition: all 0.3s;
             width: 100%;
-            font-family: inherit;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(193, 124, 149, 0.4);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
 
-        .login-card button:hover {
-            background-color: #a64d4d;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(193, 124, 149, 0.6);
+            background: linear-gradient(to bottom, #C17C95, #A5647A);
         }
 
-        .login-card button:active {
-            transform: scale(0.95);
+        .btn-primary:active {
+            transform: scale(0.98);
         }
 
         .btn-secondary {
             background-color: transparent !important;
-            border: 2px solid #8b3a3a !important;
-            color: #8b3a3a !important;
-            margin-top: 10px !important;
+            border: 1px solid #D49BAF !important;
+            color: #A5647A !important;
+            padding: 12px 30px;
+            font-size: 0.95rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-family: 'Lora', serif;
         }
 
         .btn-secondary:hover {
-            background-color: #fce4ec !important;
-            /* light visual feedback */
+            background-color: #FFF0F5 !important;
+            color: #8b3a3a !important;
+            border-color: #8b3a3a !important;
         }
 
         #error-msg {
-            color: #d32f2f;
-            font-size: 0.9rem;
-            margin-top: 15px;
+            color: #c62828;
+            font-size: 0.95rem;
+            margin-top: 20px;
             display: none;
-            font-weight: bold;
+            font-weight: 600;
+            animation: shake 0.4s ease-in-out;
+            background: #ffebee;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ffcdd2;
         }
 
         @keyframes popIn {
             0% {
-                transform: scale(0.8);
+                transform: scale(0.9) translateY(20px);
                 opacity: 0;
             }
 
             100% {
-                transform: scale(1);
+                transform: scale(1) translateY(0);
                 opacity: 1;
+            }
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- Decoraciones flotantes de fondo -->
+    <i class="fas fa-heart decoration" style="top: 15%; left: 10%; animation-delay: 0s;"></i>
+    <i class="fas fa-feather-alt decoration" style="top: 20%; right: 15%; font-size: 2rem; animation-delay: 1s;"></i>
+    <i class="fas fa-star decoration" style="bottom: 20%; left: 15%; font-size: 1.2rem; animation-delay: 2s;"></i>
+    <i class="fas fa-heart decoration" style="bottom: 15%; right: 10%; animation-delay: 1.5s;"></i>
+
     <div id="login-container">
         <div class="login-card">
-            <h2>Contenido Bloqueado por Contraseña 🔒</h2>
-            <input type="password" id="pass-input" placeholder="Ingresa la palabra secreta..." autocomplete="off">
-            <button id="btn-login">Ingresar 😊</button>
-            <button class="btn-secondary" onclick="window.location.href='ahorcado.html'">Averiguar Contraseña
-                🧐</button>
-            <p id="error-msg">Contraseña incorrecta. ¡Intruso detectado!</p>
+            <div class="ornament">
+                <svg viewBox="0 0 200 20" fill="currentColor">
+                    <path d="M0,10 Q50,0 100,10 T200,10" fill="none" stroke="currentColor" stroke-width="1.5" />
+                    <circle cx="100" cy="10" r="4" />
+                    <circle cx="85" cy="10" r="2" />
+                    <circle cx="115" cy="10" r="2" />
+                    <polygon points="100,2 103,10 100,18 97,10" fill="currentColor" />
+                </svg>
+            </div>
+
+            <h2>Nuestra Historia</h2>
+            <p>Para abrir las páginas de esta bitácora, por favor ingresa nuestra palabra secreta.</p>
+
+            <div class="input-group">
+                <input type="password" id="pass-input" placeholder="Palabra secreta..." autocomplete="off">
+                <i class="fas fa-key input-icon"></i>
+            </div>
+
+            <button id="btn-login" class="btn-primary">
+                Abrir el libro <i class="fas fa-book-open"></i>
+            </button>
+            <button class="btn-secondary" onclick="window.location.href='ahorcado.html'">
+                ¿No la recuerdas? Juega para descubrirla
+            </button>
+
+            <p id="error-msg"><i class="fas fa-exclamation-circle"></i> Contraseña incorrecta. Inténtalo de nuevo.</p>
         </div>
     </div>
 
@@ -153,14 +293,27 @@
         function verificarLogin() {
             const password = inputPass.value.trim().toUpperCase();
             if (['TUSGAFITAS', 'AMORBONITO', 'QUINCEABRIL'].includes(password)) {
-                // Guarda la sesión válida para que Index.html sepa que se realizó el login correctamente
+                // Guarda la sesión válida
                 sessionStorage.setItem('authKey', 'authed_user_angie');
-                window.location.href = 'portada.html';
+
+                // Efecto de carga visual
+                btnLogin.innerHTML = 'Abriendo... <i class="fas fa-spinner fa-spin"></i>';
+                btnLogin.style.pointerEvents = 'none';
+
+                setTimeout(() => {
+                    window.location.href = 'portada.html';
+                }, 600);
             } else {
-                document.getElementById('error-msg').style.display = 'block';
+                const errorMsg = document.getElementById('error-msg');
+                errorMsg.style.display = 'block';
+                // Trigger animation reflow
+                errorMsg.style.animation = 'none';
+                void errorMsg.offsetWidth;
+                errorMsg.style.animation = 'shake 0.4s ease-in-out';
                 inputPass.value = '';
             }
         }
     </script>
 </body>
+
 </html>

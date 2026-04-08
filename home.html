@@ -2241,6 +2241,7 @@
                 margin-top: 10px;
             }
         }
+
         /* Estilo para el Toast de Advertencia de Secciones */
         .section-toast {
             position: fixed;
@@ -2252,7 +2253,7 @@
             padding: 12px 25px;
             border-radius: 30px;
             font-weight: 600;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             z-index: 5000;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
             display: flex;
@@ -2261,7 +2262,7 @@
             opacity: 0;
             pointer-events: none;
             backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             font-family: 'Segoe UI', sans-serif;
             text-align: center;
         }
@@ -2272,9 +2273,19 @@
         }
 
         @keyframes shake-toast {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            25% { transform: translateX(-55%) translateY(0); }
-            75% { transform: translateX(-45%) translateY(0); }
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            25% {
+                transform: translateX(-55%) translateY(0);
+            }
+
+            75% {
+                transform: translateX(-45%) translateY(0);
+            }
         }
 
         .section-toast.shake {
@@ -2296,7 +2307,7 @@
             user-select: none !important;
             pointer-events: none !important;
         }
-        
+
         #guest-badge {
             position: fixed;
             top: 20px;
@@ -2309,13 +2320,13 @@
             font-weight: bold;
             z-index: 4000;
             display: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             pointer-events: none;
         }
+
         body.modo-invitado #guest-badge {
             display: block;
         }
-
     </style>
 </head>
 
@@ -2826,11 +2837,11 @@
                 toast.className = 'section-toast';
                 document.body.appendChild(toast);
             }
-            
+
             toast.innerHTML = `<i class="fas fa-lock"></i> ${message}`;
             toast.classList.add('show');
             toast.classList.remove('shake');
-            
+
             // Forzar reflow para animación de shake si ya estaba visible
             void toast.offsetWidth;
             toast.classList.add('shake');
@@ -2984,8 +2995,8 @@
 
         // === 2. LÓGICA DE TERNURA (MARIPOSAS) ===
         const MODO_PRUEBAS = false; // 
-        const MODO_INVITADO = true; // Cambiar a true para difuminar fotos y cartas a invitados
-        
+        const MODO_INVITADO = false; // Cambiar a true para difuminar fotos y cartas a invitados
+
         if (MODO_INVITADO) {
             document.body.classList.add('modo-invitado');
         }
