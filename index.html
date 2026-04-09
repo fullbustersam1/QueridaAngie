@@ -106,17 +106,19 @@
             position: relative;
             margin-bottom: 25px;
             width: 100%;
+            display: flex;
+            align-items: center;
         }
 
         .login-card input {
             width: 100%;
             box-sizing: border-box;
-            padding: 16px 45px 16px 20px;
+            padding: 16px 60px 16px 20px;
             border: 1px solid #E8B4C8;
             border-radius: 30px;
             font-size: 1.05rem;
             font-family: 'Lora', serif;
-            text-align: center;
+            text-align: left;
             color: #5C4048;
             background: rgba(255, 255, 255, 0.8);
             outline: none;
@@ -135,68 +137,57 @@
             box-shadow: 0 0 15px rgba(212, 155, 175, 0.4);
         }
 
-        .input-icon {
+        .btn-login-circle {
             position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #D49BAF;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-
-        .login-card input:focus+.input-icon {
-            color: #8b3a3a;
-        }
-
-        .btn-primary {
+            right: 5px;
             background: linear-gradient(to bottom, #D49BAF, #C17C95);
             color: white;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.15rem;
-            border-radius: 30px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
             cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(193, 124, 149, 0.4);
-            margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 10px rgba(193, 124, 149, 0.3);
+            z-index: 5;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(193, 124, 149, 0.6);
+        .btn-login-circle:hover {
+            transform: scale(1.1) rotate(5deg);
             background: linear-gradient(to bottom, #C17C95, #A5647A);
+            box-shadow: 0 6px 15px rgba(193, 124, 149, 0.5);
         }
 
-        .btn-primary:active {
-            transform: scale(0.98);
+        .btn-login-circle:active {
+            transform: scale(0.95);
+        }
+
+        .btn-login-circle i {
+            font-size: 1.2rem;
         }
 
         .btn-secondary {
-            background-color: transparent !important;
-            border: 1px solid #D49BAF !important;
-            color: #A5647A !important;
+            background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%) !important;
+            border: none !important;
+            color: white !important;
             padding: 12px 30px;
             font-size: 0.95rem;
             border-radius: 30px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             width: 100%;
             font-family: 'Lora', serif;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+            font-weight: 500;
         }
 
         .btn-secondary:hover {
-            background-color: #FFF0F5 !important;
-            color: #8b3a3a !important;
-            border-color: #8b3a3a !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+            filter: brightness(1.1);
         }
 
         #error-msg {
@@ -261,19 +252,18 @@
                 </svg>
             </div>
 
-            <h2>Nuestra Historia</h2>
-            <p>Para abrir las páginas de esta bitácora, por favor ingresa nuestra palabra secreta.</p>
+            <h2>Contenido Bloqueado</h2>
+            <p>Para descubrir el contenido de esta sorpresa, por favor se requiere una palabra secreta.</p>
 
             <div class="input-group">
                 <input type="password" id="pass-input" placeholder="Palabra secreta..." autocomplete="off">
-                <i class="fas fa-key input-icon"></i>
+                <button id="btn-login" class="btn-login-circle" title="Ingresar">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
 
-            <button id="btn-login" class="btn-primary">
-                Abrir el libro <i class="fas fa-book-open"></i>
-            </button>
             <button class="btn-secondary" onclick="window.location.href='ahorcado.html'">
-                ¿No la recuerdas? Juega para descubrirla
+                Descubrir contraseña 🕵️‍♀️🔎
             </button>
 
             <p id="error-msg"><i class="fas fa-exclamation-circle"></i> Contraseña incorrecta. Inténtalo de nuevo.</p>
