@@ -10,6 +10,7 @@
     <link rel="dns-prefetch" href="https://drive.google.com">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <style>
         body {
@@ -2833,7 +2834,7 @@
     <div id="notification-container"></div>
 
     <section id="panel6" class="panel"
-        style="flex-direction: column; padding: 60px 0; justify-content: flex-start; align-items: center; min-height: 100vh;">
+        style="flex-direction: column; padding: 60px 0; justify-content: flex-start; align-items: center; min-height: 100vh; overflow-y: auto;">
 
         <button id="up-arrow-btn-panel6" onclick="switchPanel(5)" class="scroll-arrow-up"
             style="background: rgba(255,255,255,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px); transition: all 0.3s ease; margin-bottom: 20px; flex-shrink: 0;">
@@ -2947,10 +2948,49 @@
             ¡Enciende la máquina y arrastra una de tus monedas ganadas a la ranura para desbloquear música! ✨
         </p>
 
+        <div style="height: 50px; flex-shrink: 0;"></div>
+
+        <button id="down-arrow-btn-panel6" onclick="switchPanel(7)" class="scroll-arrow-down"
+            style="background: rgba(255,255,255,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px); transition: all 0.3s ease; margin-bottom: 20px; flex-shrink: 0;">
+            <i class="fas fa-chevron-down"></i>
+        </button>
+
+        <div style="height: 100px; flex-shrink: 0;"></div>
+    </section>
+
+    <section id="panel7" class="panel" style="overflow-y: auto;">
+        <button id="up-arrow-btn-panel7" onclick="switchPanel(6)" class="scroll-arrow-up"
+            style="background: rgba(142,36,170,0.1); color: #8e24aa; border: 1px solid #8e24aa; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; margin-bottom: 20px; flex-shrink: 0; transition: all 0.3s ease;">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+
+        <div class="final-card">
+            <h1 style="font-family: 'Great Vibes', cursive; color: #8e24aa; font-size: 3.5rem; margin-bottom: 10px;">
+                Unas Últimas Palabras...</h1>
+            <div class="divider" style="width: 80px; height: 3px; background: #ff007f; margin: 0 auto 30px;"></div>
+
+            <p style="font-size: 1.2rem; line-height: 1.7; color: #4a148c; margin-bottom: 30px; font-style: italic;">
+                "Este proyecto fue creado con el único propósito de recordarte lo valiosa que eres y lo mucho que
+                atesoro cada instante a tu lado. Gracias por permitirme ser parte de tu historia."
+            </p>
+
+            <div class="final-response-box">
+                <p style="font-weight: 600; color: #8e24aa; margin-bottom: 15px; font-size: 1.1rem;">
+                    ¿Quieres decirme algo? Tu respuesta llegará directamente a mi correo. ✨
+                </p>
+                <textarea id="angie-message" class="final-textarea"
+                    placeholder="Escribe aquí tu mensaje para mí..."></textarea>
+                <button class="btn-send-response" onclick="enviarRespuestaAngie()">
+                    <i class="fas fa-paper-plane"></i> Enviar a Steeven
+                </button>
+            </div>
+        </div>
+
         <div style="height: 100px; flex-shrink: 0;"></div>
     </section>
 
     <footer>Hecho con Amor ♥ por STEEVEN SOLANO</footer>
+
 
     <div id="modal-visor" class="modal">
         <span class="close-modal" onclick="cerrarVisor()">&times;</span>
@@ -2968,9 +3008,12 @@
     </div>
 
     <script>
+        (function () {
+            emailjs.init("507KHymv2dhhM0WGQ");
+        })();
+
         const listaIDsGallery = [
             "img/galery/WhatsApp Image 2026-03-29 at 1.14.29 PM.jpeg",
-            //"img/galery/WhatsApp Image 2026-03-29 at 1.14.30 PM.jpeg",
             "img/galery/WhatsApp Image 2026-03-29 at 1.14.32 PM.jpeg",
             "img/galery/WhatsApp Image 2026-03-29 at 1.14.33 PM (1).jpeg",
             "img/galery/WhatsApp Image 2026-03-29 at 1.14.33 PM.jpeg",
@@ -3014,7 +3057,14 @@
             "img/galery/WhatsApp Image 2026-03-29 at 1.14.48 PM (1).jpeg",
             "img/galery/WhatsApp Image 2026-03-29 at 1.14.48 PM (2).jpeg",
             "img/galery/WhatsApp Image 2026-03-29 at 1.14.48 PM.jpeg",
-            "img/galery/WhatsApp Image 2026-03-29 at 1.14.49 PM.jpeg"
+            "img/galery/WhatsApp Image 2026-03-29 at 1.14.49 PM.jpeg",
+            "img/galery/3F887193-15D0-4058-A91A-787C4EB9E0DA.jpeg",
+            "img/galery/8DDAB2FE-61D4-4CE8-827A-7628AC4D814C.jpeg",
+            "img/galery/9C36975E-BCEB-4DAB-831A-133AC99C8E19.mp4",
+            "img/galery/62B73BEC-CA1C-4DDD-BFE1-5D0B751CFEEB.jpeg",
+            "img/galery/64743466-02B7-4DA3-AFE4-942C93015DF2.jpeg",
+            "img/galery/IMG_20250214_174736.jpeg",
+            "img/galery/IMG_20250214_174819.jpeg"
         ];
         const listaIDsRecuerdos = [
             "img/recuerdo/img02.jpeg",
@@ -3103,7 +3153,7 @@
         }
 
         // === 2. LÓGICA DE TERNURA (MARIPOSAS) ===
-        const MODO_PRUEBAS = false; // Activo a petición del usuario
+        const MODO_PRUEBAS = true; // Activo a petición del usuario
         let scoreTernura = 0;
         let memoriasDesbloqueadas = false;
 
@@ -3684,14 +3734,32 @@
                     currentObjectiveMet = false;
                     warningMessage = "¡Revela todos los recuerdos rascables! ✨";
                 } else if (panelActualActivo === 3 && !rewardPanelsDone.p3) {
-                    currentObjectiveMet = false;
-                    warningMessage = "¡Desbloquea al menos una Polaroid en esta parte! 📸";
+                    const savedUnlocked = JSON.parse(localStorage.getItem('unlocked_gallery_items') || "[]");
+                    const totalItems = listaIDsGallery.length;
+                    const halfPoint = Math.floor(totalItems / 2);
+                    if (savedUnlocked.some(idx => idx < halfPoint)) {
+                        rewardPanelsDone.p3 = true;
+                        ganarMoneda('¡Ya habías completado esta parte! Aquí tienes tu moneda ✨');
+                    } else {
+                        currentObjectiveMet = false;
+                        warningMessage = "¡Desbloquea al menos una Polaroid en esta parte! 📸";
+                    }
                 } else if (panelActualActivo === 4 && !rewardPanelsDone.p4) {
-                    currentObjectiveMet = false;
-                    warningMessage = "¡Hay más recuerdos esperándote aquí! 📸";
+                    const savedUnlocked = JSON.parse(localStorage.getItem('unlocked_gallery_items') || "[]");
+                    const totalItems = listaIDsGallery.length;
+                    const halfPoint = Math.floor(totalItems / 2);
+                    if (savedUnlocked.some(idx => idx >= halfPoint)) {
+                        rewardPanelsDone.p4 = true;
+                        ganarMoneda('¡Ya habías completado esta parte! Aquí tienes tu moneda ✨');
+                    } else {
+                        currentObjectiveMet = false;
+                        warningMessage = "¡Hay más recuerdos esperándote aquí! 📸";
+                    }
                 } else if (panelActualActivo === 5 && !rewardPanelsDone.p5) {
                     currentObjectiveMet = false;
                     warningMessage = "¡Termina de leer la carta con atención! 💌";
+                } else if (panelActualActivo === 6) {
+                    currentObjectiveMet = true;
                 }
 
                 if (!currentObjectiveMet) {
@@ -4222,13 +4290,43 @@ Texto de prueba, posterior se modificara por el verdero texto final`;
                 return;
             }
 
-            const subject = encodeURIComponent("Respuesta final de Angie - Querida Angie Project");
-            const body = encodeURIComponent(mensaje);
-            const mailtoLink = `mailto:sam.solano@hotmail.com,steeven.solano@gmail.com?subject=${subject}&body=${body}`;
+            // Cambiar estado del botón a "Enviando..."
+            const btn = document.querySelector('.btn-send-response');
+            if (btn) {
+                var originalContent = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            }
 
-            window.location.href = mailtoLink;
+            // Configurar los parámetros para el template de EmailJS
+            const templateParams = {
+                reply_to: "steeven.solano@gmail.com",
+                message: mensaje,
+                subject: "Respuesta Final de Angie"
+            };
 
-            ganarMoneda("¡Abriendo tu correo para enviar la respuesta! ✨");
+            emailjs.send("service_29e54nl", "template_4a4s5an", templateParams)
+                .then(function (response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    ganarMoneda("¡Tu respuesta ha sido enviada directamente! 🚀✨");
+
+                    if (btn) {
+                        btn.innerHTML = '<i class="fas fa-check"></i> ¡Mensaje Enviado!';
+                        setTimeout(() => {
+                            btn.innerHTML = originalContent;
+                            btn.disabled = false;
+                        }, 3000);
+                    }
+                    document.getElementById('angie-message').value = "";
+                }, function (error) {
+                    console.log('FAILED...', error);
+                    ganarMoneda("Hubo un error al enviar. Por favor intenta de nuevo. ❌", true);
+
+                    if (btn) {
+                        btn.disabled = false;
+                        btn.innerHTML = originalContent;
+                    }
+                });
         }
 
         // Iniciar en la carga
