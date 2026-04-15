@@ -1910,7 +1910,7 @@
             transform: translateX(-50%);
             z-index: 2;
             clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
-            animation: growTree 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards 0s;
+            animation: growTree 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards 1.5s;
         }
 
         .tree-canopy {
@@ -3523,7 +3523,7 @@
     </div>
 
 
-    <div id="panel-loader">
+    <div id="panel-loader" class="show" style="display: flex;">
         <div class="loader-butterfly">🦋</div>
         <div class="loader-text">Preparando magia para Angie...</div>
     </div>
@@ -4265,14 +4265,8 @@
             // Mostrar controles flotantes
             document.getElementById('music-container').style.display = 'flex';
 
-            // Mostrar pantalla de carga para disimular la lentitud del hilo principal
-            const loader = document.getElementById('panel-loader');
-            loader.style.display = 'flex';
-            // Forzar reflow para la transición CSS
-            void loader.offsetWidth;
-            loader.classList.add('show');
-
-            // Esperar a que el loader se fije en pantalla antes de ejecutar la carga pesada (800 nodos)
+            // Como el loader ya está visible desde el HTML, pasamos directo a crear la magia pesada.
+            // Usamos un pequeño setTimeout de 100ms para asegurar que el navegador pintó bien el loader.
             setTimeout(() => {
                 document.getElementById('main-content').style.display = 'flex';
                 iniciarMagia();
@@ -4280,6 +4274,7 @@
 
                 // Ocultar pantalla de precarga después de dar tiempo a que los FPS se estabilicen
                 setTimeout(() => {
+                    const loader = document.getElementById('panel-loader');
                     loader.classList.remove('show');
                     setTimeout(() => loader.style.display = 'none', 500);
                 }, 1200); // 1.2s de precarga simulada / estabilización
@@ -4822,7 +4817,7 @@
                 h.style.setProperty('--target-transform', targetTransform);
                 h.style.opacity = '0';
 
-                const delay = 1.1 + ((-y) * 0.0035) + (randomFijo() * 0.5);
+                const delay = 1.5 + 1.1 + ((-y) * 0.0035) + (randomFijo() * 0.5);
 
                 h.style.animation = `bloomHeart 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards ${delay}s`;
 
@@ -4910,7 +4905,7 @@
             const targetTransform = `rotate(${rotation}deg) scale(1.1) translate(-50%, -50%)`;
             petalo.style.setProperty('--target-transform', targetTransform);
 
-            const delay = 4.5 + randomFijo() * 1.5;
+            const delay = 3.5 + randomFijo() * 1.5;
             petalo.style.animation = `bloomHeart 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards ${delay}s`;
 
             basePasto.appendChild(petalo);
@@ -5139,6 +5134,20 @@ He preparado todo esto, con mucho respeto y amor para ti, discúlpame si esta ma
             const cursor = container.querySelector('.cursor');
 
             function escribir() {
+
+                if (saltarEscritura) {
+                    container.textContent = textoDisculpas; // Pegar todo el texto de golpe
+                    if (cursor && cursor.parentNode) cursor.remove(); // Quitar cursor
+                    signature.classList.add('show'); // Mostrar firma
+
+                    // Entregar moneda inmediatamente
+                    if (!rewardPanelsDone.p5) {
+                        rewardPanelsDone.p5 = true;
+                        ganarMoneda('¡Has terminado de leer mi carta! Has ganado una moneda ✨');
+                    }
+                    return; // Termina la ejecución de la función aquí mismo
+                }
+
                 if (i < textoDisculpas.length) {
                     const char = textoDisculpas.charAt(i);
                     const textNode = document.createTextNode(char);
