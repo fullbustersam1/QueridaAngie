@@ -8,7 +8,8 @@
     <!-- Preconnect a Google Drive para optimizar carga de media -->
     <link rel="preconnect" href="https://drive.google.com" crossorigin>
     <link rel="dns-prefetch" href="https://drive.google.com">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Gloria+Hallelujah&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Gloria+Hallelujah&family=Crimson+Text:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap"
         rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -81,6 +82,144 @@
         .notice-badge i {
             color: #ff007f;
             font-size: 1.2rem;
+        }
+
+        /* --- NUBES ANIMADAS PARA EL CIELO --- */
+        .sky-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(180deg, rgba(220, 130, 195, 0.5) 0%, rgba(245, 175, 215, 0.3) 40%, rgba(253, 241, 246, 0) 75%);
+            pointer-events: none;
+            z-index: 1;
+            /* Debajo de los botones y paneles principales */
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: inset 0 -3px 6px rgba(255, 210, 230, 0.4);
+            border-radius: 50px;
+            filter: blur(1.5px);
+            animation: drift linear infinite;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: inset 0 -3px 6px rgba(255, 210, 230, 0.4);
+            border-radius: 50%;
+        }
+
+        .cloud1 {
+            width: 140px;
+            height: 40px;
+            animation-duration: 90s;
+            top: 12%;
+            left: -160px;
+        }
+
+        .cloud1::before {
+            width: 65px;
+            height: 65px;
+            top: -30px;
+            left: 20px;
+        }
+
+        .cloud1::after {
+            width: 50px;
+            height: 50px;
+            top: -20px;
+            right: 20px;
+        }
+
+        .cloud2 {
+            width: 180px;
+            height: 50px;
+            animation-duration: 130s;
+            animation-delay: -35s;
+            top: 25%;
+            left: -220px;
+            opacity: 0.5;
+            transform: scale(0.85);
+        }
+
+        .cloud2::before {
+            width: 85px;
+            height: 85px;
+            top: -45px;
+            left: 25px;
+        }
+
+        .cloud2::after {
+            width: 65px;
+            height: 65px;
+            top: -25px;
+            right: 30px;
+        }
+
+        .cloud3 {
+            width: 110px;
+            height: 35px;
+            animation-duration: 75s;
+            animation-delay: -15s;
+            top: 40%;
+            left: -120px;
+            opacity: 0.8;
+            transform: scale(0.7);
+        }
+
+        .cloud3::before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 15px;
+        }
+
+        .cloud3::after {
+            width: 40px;
+            height: 40px;
+            top: -20px;
+            right: 15px;
+        }
+
+        .cloud4 {
+            width: 160px;
+            height: 45px;
+            animation-duration: 105s;
+            animation-delay: -65s;
+            top: 5%;
+            left: -180px;
+            opacity: 0.6;
+        }
+
+        .cloud4::before {
+            width: 75px;
+            height: 75px;
+            top: -35px;
+            left: 25px;
+        }
+
+        .cloud4::after {
+            width: 55px;
+            height: 55px;
+            top: -25px;
+            right: 20px;
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translateX(0vw);
+            }
+
+            100% {
+                transform: translateX(110vw);
+            }
         }
 
         /* ==========================================
@@ -175,8 +314,10 @@
         /* Página izquierda: Calendario centrado */
         .ch2-page-left {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: 20px;
         }
 
         .ch2-calendar-wrapper {
@@ -328,21 +469,22 @@
 
         .scratch-reward img {
             width: 100%;
-            height: 60%;
+            height: 100%;
             object-fit: cover;
-            border-bottom: 2px solid #fce4ec;
         }
 
-        .scratch-reward-text-container {
-            flex: 1;
-            width: 100%;
-            padding: 10px;
+        .ch2-letter-reward {
+            background: #fffaf0;
+            padding: 20px;
             box-sizing: border-box;
-            text-align: center;
-            background: #fce4ec;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            text-align: left;
+            overflow-y: auto;
+            height: 100%;
+            font-family: 'Crimson Text', serif;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: #444;
+            border: 1px solid #eee;
         }
 
         .scratch-reward-text {
@@ -1424,16 +1566,11 @@
         }
 
         /* === PANEL FINAL (CONTESTACIÓN) === */
-        #panel7 {
-            position: relative;
+        #panel8 {
             background-color: #fdf1f6;
-            min-height: 100vh;
+            z-index: 10;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 60px 20px;
-            box-sizing: border-box;
         }
 
         .final-card {
@@ -2681,6 +2818,573 @@
                 margin-top: 10px;
             }
         }
+
+        /* ==========================================
+           CAPÍTULO 6: LA NOCHE ESTRELLADA (PANEL 7)
+           ========================================== */
+        #panel7 {
+            background-color: var(--ch6-bg, #050b1d);
+            overflow: hidden !important;
+            padding: 0 !important;
+            justify-content: center !important;
+            position: relative;
+        }
+
+        #panel7 .ch6-launch-pad {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, #1a2a6c, #b21f1f, #fdbb2d);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        #panel7 .ch6-earth-ground {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30vh;
+            background: #050510;
+            clip-path: polygon(0% 100%, 100% 100%, 100% 40%, 85% 65%, 70% 35%, 55% 55%, 40% 20%, 25% 60%, 10% 40%, 0% 70%);
+            z-index: 1;
+            filter: blur(1px);
+        }
+
+        #panel7 .ch6-rocket-container {
+            position: relative;
+            width: 200px;
+            height: 250px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+            margin-top: 5vh;
+        }
+
+        #panel7 .ch6-rocket-main {
+            font-size: 11rem;
+            position: relative;
+            z-index: 2;
+            margin: 0;
+            filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.4));
+            transform: rotate(-45deg);
+            display: inline-block;
+        }
+
+        #panel7 .ch6-thrust {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 45px;
+            height: 110px;
+            background: linear-gradient(to bottom, #ff3d00, #ffea00, transparent);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s;
+            filter: blur(8px);
+        }
+
+        #panel7 .ch6-launch-pad.igniting .ch6-thrust {
+            opacity: 1;
+            animation: ch6FirePulse 0.1s infinite alternate;
+        }
+
+        #panel7 .ch6-launch-pad.igniting .ch6-rocket-container {
+            animation: ch6RocketHustle 0.15s infinite;
+        }
+
+        @keyframes ch6FirePulse {
+            from {
+                height: 60px;
+                transform: translateX(-50%) scaleX(1);
+            }
+
+            to {
+                height: 110px;
+                transform: translateX(-50%) scaleX(1.3);
+                opacity: 0.9;
+            }
+        }
+
+        @keyframes ch6RocketHustle {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(2px, -2px);
+            }
+
+            50% {
+                transform: translate(-2px, 2px);
+            }
+
+            75% {
+                transform: translate(2px, 2px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        #panel7 .ch6-control-panel {
+            display: flex;
+            gap: 50px;
+            margin-top: 15vh;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 60px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 25;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.05);
+            transition: all 0.5s ease;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #panel7 .ch6-panel-legend {
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 1), 0 2px 4px #000;
+            pointer-events: none;
+            opacity: 1;
+            margin-bottom: 0;
+            width: 100%;
+            font-weight: 300;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            transition: all 0.8s ease;
+            position: absolute;
+        }
+
+        #panel7 .ch6-panel-legend.fade-out {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        #panel7 .ch6-knob-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        #panel7 .ch6-knob-box {
+            width: 55px;
+            height: 55px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            border: 2px solid #444;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #panel7 .ch6-knob-box::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.4s;
+        }
+
+        #panel7 .ch6-knob-indicator {
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 16px;
+            background: #555;
+            border-radius: 2px;
+            transition: all 0.4s;
+        }
+
+        #panel7 .ch6-knob-group span {
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        #panel7 .ch6-knob-group.active .ch6-knob-box {
+            border-color: #00e5ff;
+            background: #001a1e;
+        }
+
+        #panel7 .ch6-knob-group.active .ch6-knob-box::before {
+            border-color: #00e5ff;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+        }
+
+        #panel7 .ch6-knob-group.active .ch6-knob-indicator {
+            background: #00e5ff;
+            height: 20px;
+            box-shadow: 0 0 10px #00e5ff;
+            transform: translateX(-50%) rotate(180deg);
+            top: 30px;
+        }
+
+        #panel7 .ch6-knob-group.active span {
+            color: #00e5ff;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+        }
+
+        #panel7 .ch6-launch-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            padding: 20px 60px;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            z-index: 30;
+            position: absolute;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.1);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: ch6PulseGlow 3s infinite;
+            outline: none;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-10px) scale(0.9);
+        }
+
+        #panel7 .ch6-launch-btn.ready {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+
+        #panel7 .ch6-launch-btn:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        #panel7 .ch6-launch-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        #panel7 .ch6-launch-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: ch6Shimmer 3.5s infinite linear;
+        }
+
+        @keyframes ch6Shimmer {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        @keyframes ch6PulseGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 255, 255, 0.1);
+            }
+
+            50% {
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 25px rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        #panel7 .ch6-launch-away {
+            animation: ch6FlyToSpace 3s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards !important;
+        }
+
+        @keyframes ch6FlyToSpace {
+            0% {
+                transform: translateY(0) scale(1.1);
+            }
+
+            20% {
+                transform: translateY(20px) scale(1.15);
+            }
+
+            100% {
+                transform: translateY(-130vh) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        /* Starfield canvas & UI */
+        #panel7 .ch6-star-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            z-index: 5;
+            touch-action: none;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+
+        #panel7 .ch6-bg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(5, 11, 29, 0.7), rgba(5, 11, 29, 0.7)), url('img/nocheestrellada.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        #panel7 .ch6-sky-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(5, 11, 29, 0.9) 100%);
+            z-index: 2;
+        }
+
+        #panel7 .ch6-ui-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5vh 20px;
+            box-sizing: border-box;
+        }
+
+        #panel7 .ch6-instruction-text {
+            color: #fff;
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-align: center;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 5px #000;
+            opacity: 1;
+            margin: 0;
+            max-width: 900px;
+            animation: ch6FloatText 4s ease-in-out infinite;
+            transition: opacity 0.5s;
+        }
+
+        @keyframes ch6FloatText {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        #panel7 .ch6-victory-container {
+            position: absolute;
+            top: 50%;
+            right: 8%;
+            transform: translateY(-50%);
+            text-align: right;
+            max-width: 450px;
+            display: none;
+            z-index: 50;
+            opacity: 0;
+            transition: opacity 2s ease;
+        }
+
+        #panel7 .ch6-victory-container.show {
+            display: block;
+            opacity: 1;
+        }
+
+        #panel7 .ch6-victory-message {
+            color: #fff;
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.4rem, 4vw, 3.8rem);
+            margin-bottom: 0;
+            text-shadow: 0 0 10px rgba(255, 30, 86, 0.4), 0 0 30px rgba(255, 30, 86, 0.6);
+            line-height: 1.2;
+            letter-spacing: 1px;
+        }
+
+        /* Memory modal for constellation */
+        #panel7 .ch6-memory-modal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #panel7 .ch6-memory-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #panel7 .ch6-memory-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 20px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.8) translateY(20px);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        #panel7 .ch6-memory-modal.show .ch6-memory-card {
+            transform: scale(1) translateY(0);
+        }
+
+        #panel7 .ch6-memory-img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+        }
+
+        #panel7 .ch6-memory-text {
+            color: #fff;
+            font-family: 'Gloria Hallelujah', cursive;
+            font-size: 1.2rem;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        #panel7 .ch6-continue-btn {
+            background: linear-gradient(45deg, #ff1e56, #ff4d6d);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-family: 'Inter', sans-serif;
+            pointer-events: auto;
+        }
+
+        #panel7 .ch6-continue-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 30, 86, 0.5);
+        }
+
+        /* Content initially hidden, revealed after rocket launch */
+        #panel7 .ch6-bg-container,
+        #panel7 .ch6-sky-overlay,
+        #panel7 .ch6-star-canvas,
+        #panel7 .ch6-ui-container {
+            opacity: 0;
+            transition: opacity 3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #panel7 .ch6-content-visible {
+            opacity: 1 !important;
+        }
+
+        /* Nav buttons inside panel7 */
+        #panel7 .ch6-nav-up {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            z-index: 200;
+        }
+
+        #panel7 .ch6-nav-down {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            z-index: 200;
+        }
     </style>
 </head>
 
@@ -2723,6 +3427,14 @@
     </div>
 
     <section id="panel1" class="panel active">
+        <!-- Nubes para dar más vida al cielo -->
+        <div class="sky-bg">
+            <div class="cloud cloud1"></div>
+            <div class="cloud cloud2"></div>
+            <div class="cloud cloud3"></div>
+            <div class="cloud cloud4"></div>
+        </div>
+
         <!-- Modal de instrucciones reubicado en la base del panel1 para evitar estar atrapado en layouts relativos pequeños -->
         <div id="modal-instrucciones-mariposas"
             style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; display: none; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.6); z-index: 2005; opacity: 0; transition: opacity 0.5s ease; padding: 20px; box-sizing: border-box;">
@@ -2831,6 +3543,12 @@
                         </g>
                     </svg>
                     <div class="tree-canopy layer-front" id="canopy-front"></div>
+
+                    <!-- Silueta de la pareja sentada bajo el árbol -->
+                    <!-- Silueta de la pareja usando mask para darle un color armonioso -->
+                    <div id="silueta-pareja"
+                        style="position: absolute; bottom: -5px; left: 63%; transform: translateX(-50%); width: 148px; height: 148px; z-index: 5; background-color: #4a233b; -webkit-mask-image: url('pareja_silueta.png'); mask-image: url('pareja_silueta.png'); -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: bottom center; mask-position: bottom center; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25)); pointer-events: none;">
+                    </div>
                 </div>
             </div>
         </div>
@@ -2875,12 +3593,32 @@
                         <div class="ch2-calendar-heart">
                             <i class="fas fa-heart"></i>
                         </div>
-                        <div class="ch2-calendar-footer">
-                            <p>Ese día fue unos de los días más felices de mi vida, tanto así que sigue presente en
-                                varias actividades de mi día a día.</p>
-                        </div>
                     </div>
                     <p class="ch2-subtitle">El día que comenzó nuestra mejor aventura.</p>
+                </div>
+
+                <!-- CARTA RASCABLE DEBAJO DEL CALENDARIO -->
+                <div class="scratch-container" style="width: 100%; max-width: 450px; height: 350px; margin-top: 30px;">
+                    <div class="scratch-reward">
+                        <div class="ch2-letter-reward">
+                            <p style="margin:0;">
+                                <strong>Querida Angie,</strong><br><br>
+                                Recordar como fue el inicio de este lindo viaje me llena de muchos sentimientos
+                                encontrados, desde recordar cómo fue la primera vez que te pedí tomar tu mano en aquel
+                                Riocentro Norte hasta nuestro primer piquito en aquel taxi. Honestamente, aún puedo
+                                sentir cómo me palpitaba el corazón ante cada "primera vez" que vivía contigo.<br><br>
+                                Aquel 15 de abril de 2023 es mucho más que el inicio de nuestro noviazgo. Para mí, los
+                                "15" representan el concepto total de lo que significa amar. Durante más de 30 meses,
+                                viví con la ilusión de superarme, buscando siempre innovar y sorprenderte con detalles
+                                en los que pudieras sentir todo el amor que intentaba transmitirte.<br><br>
+                                Se que a lo largo de la relación tuvimos nuestros altibajos, pero sé que sobre todas las
+                                cosas prevalecen todos esos bellos momentos que compartimos juntos y nos supimos
+                                entregar el amor más precioso y envidiados por muchos. Si tuviera la oportunidad
+                                volvería a elegir vivir más de esos 15 de Abril el resto de mi vida junto a tu lado.
+                            </p>
+                        </div>
+                    </div>
+                    <canvas class="scratch-canvas"></canvas>
                 </div>
             </div>
 
@@ -2890,11 +3628,6 @@
                     <div class="scratch-container">
                         <div class="scratch-reward">
                             <img src="img/capitulo2/image2.jpeg" alt="Recuerdo 2">
-                            <div class="scratch-reward-text-container">
-                                <p class="scratch-reward-text">¿Recuerdas que desesperadamente queria que fueras mi
-                                    novia desde
-                                    el 11 de abril?</p>
-                            </div>
                         </div>
                         <canvas class="scratch-canvas"></canvas>
                     </div>
@@ -2902,10 +3635,6 @@
                     <div class="scratch-container">
                         <div class="scratch-reward">
                             <img src="img/capitulo2/image4.jpeg" alt="Recuerdo 4">
-                            <div class="scratch-reward-text-container">
-                                <p class="scratch-reward-text">Tanto anhelaba que fueras mi novia que descubrí ese lado
-                                    detallista que no sabía que existía en mí.</p>
-                            </div>
                         </div>
                         <canvas class="scratch-canvas"></canvas>
                     </div>
@@ -2913,23 +3642,14 @@
                     <div class="scratch-container">
                         <div class="scratch-reward">
                             <img src="img/capitulo2/image3.jpeg" alt="Recuerdo 3">
-                            <div class="scratch-reward-text-container">
-                                <p class="scratch-reward-text">Cuando me diste el sí, fui el hombre más feliz del mundo.
-                                    ¡Quería
-                                    gritarlo por todo el mall!</p>
-                            </div>
                         </div>
                         <canvas class="scratch-canvas"></canvas>
                     </div>
 
                     <div class="scratch-container">
                         <div class="scratch-reward">
-                            <img src="img/capitulo2/image1.jpeg" alt="Recuerdo 1">
-                            <div class="scratch-reward-text-container">
-                                <p class="scratch-reward-text">Estabamos tan contentos antes de la tragedia 😂 <br>
-                                    (Antes de
-                                    tener el agua hasta los tobillos)</p>
-                            </div>
+                            <img src="img/capitulo2/image1.jpeg" alt="Recuerdo 1"
+                                style="object-fit: contain; background: #fdf1f6;">
                         </div>
                         <canvas class="scratch-canvas"></canvas>
                     </div>
@@ -3017,12 +3737,12 @@
         <div class="letter-paper" id="apology-letter">
             <div class="letter-photo-frame">
                 <!-- Reemplazar con una foto real -->
-                <img src="img/recuerdo/img01.jpeg" alt="Nosotros">
+                <img src="img/capitulo6/primerviaje.gif" alt="Nosotros">
             </div>
 
             <h3
                 style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #8e24aa; margin-bottom: 20px; text-align: center;">
-                Desde mi corazón...</h3>
+                Capitulo 4: Antes de continuar... Primero lo más importante</h3>
 
             <div class="typewriter-container" id="letter-text"></div>
 
@@ -3075,6 +3795,14 @@
                         <div class="music-layout">
                             <div class="track-list" id="track-list">
                                 <!-- Tracks remain the same, logic will handle locking -->
+                                <div class="track-item locked" id="track-tus-gafitas" data-vid="6GtsbsF-Jl8"
+                                    data-tid="track-tus-gafitas" onclick="seleccionarCancionRockola(this)">
+                                    <div class="track-icon"><i class="fas fa-lock"></i></div>
+                                    <div class="track-info">
+                                        <h4>TUS GAFITAS</h4>
+                                        <p>KAROL G</p>
+                                    </div>
+                                </div>
                                 <div class="track-item locked" id="track-mami-sabe" data-vid="wGCtBWejgoc"
                                     data-tid="track-mami-sabe" onclick="seleccionarCancionRockola(this)">
                                     <div class="track-icon"><i class="fas fa-lock"></i></div>
@@ -3107,14 +3835,7 @@
                                         <p>Alvaro Diaz</p>
                                     </div>
                                 </div>
-                                <div class="track-item locked" id="track-como-te-extrano" data-vid="IQPhLCkUugw"
-                                    data-tid="track-como-te-extrano" onclick="seleccionarCancionRockola(this)">
-                                    <div class="track-icon"><i class="fas fa-lock"></i></div>
-                                    <div class="track-info">
-                                        <h4>CÓMO TE EXTRAÑO MI AMOR</h4>
-                                        <p>LEO DAN</p>
-                                    </div>
-                                </div>
+
                             </div>
 
                             <div class="video-container">
@@ -3167,8 +3888,82 @@
         <div style="height: 100px; flex-shrink: 0;"></div>
     </section>
 
-    <section id="panel7" class="panel" style="overflow-y: auto;">
-        <button id="up-arrow-btn-panel7" onclick="switchPanel(6)" class="scroll-arrow-up"
+    <!-- ========== CAPÍTULO 6: LA NOCHE ESTRELLADA (PANEL 7) ========== -->
+    <section id="panel7" class="panel">
+        <button class="ch6-nav-up" onclick="switchPanel(6)"><i class="fas fa-chevron-up"></i></button>
+
+        <!-- Rocket Launch Pad -->
+        <div class="ch6-launch-pad" id="ch6-launch-pad">
+            <div class="ch6-earth-ground"></div>
+            <div class="ch6-rocket-container" id="ch6-rocket">
+                <div class="ch6-thrust"></div>
+                <p class="ch6-rocket-main">🚀</p>
+            </div>
+            <div id="ch6-control-wrapper"
+                style="display: flex; flex-direction: column; align-items: center; z-index: 25; margin-top: 8vh;">
+                <div
+                    style="height: 100px; display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 20px;">
+                    <h3 class="ch6-panel-legend" id="ch6-legend">Enciende la nave y haz que despegue</h3>
+                    <button class="ch6-launch-btn" id="ch6-launch-btn" onclick="ch6_startCountdown()">Confirmar
+                        Despegue</button>
+                </div>
+                <div class="ch6-control-panel">
+                    <div class="ch6-knob-group" onclick="ch6_toggleKnob(0, this)">
+                        <div class="ch6-knob-box">
+                            <div class="ch6-knob-indicator"></div>
+                        </div>
+                        <span>Motor</span>
+                    </div>
+                    <div class="ch6-knob-group" onclick="ch6_toggleKnob(1, this)">
+                        <div class="ch6-knob-box">
+                            <div class="ch6-knob-indicator"></div>
+                        </div>
+                        <span>Sistemas</span>
+                    </div>
+                    <div class="ch6-knob-group" onclick="ch6_toggleKnob(2, this)">
+                        <div class="ch6-knob-box">
+                            <div class="ch6-knob-indicator"></div>
+                        </div>
+                        <span>Energía</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Starfield -->
+        <div class="ch6-bg-container" id="ch6-bg"></div>
+        <div class="ch6-sky-overlay" id="ch6-sky"></div>
+        <canvas class="ch6-star-canvas" id="ch6-canvas"></canvas>
+
+        <!-- UI overlay -->
+        <div class="ch6-ui-container" id="ch6-ui">
+            <h1 class="ch6-instruction-text" id="ch6-instruction">
+                Las constelaciones siempre nos guiaron el primer día.<br>
+                ¡Exploremos las estrellas!
+            </h1>
+            <div id="ch6-victory" class="ch6-victory-container">
+                <h2 class="ch6-victory-message">
+                    Nuestras coordenadas nunca se perdieron por completo,<br>
+                    el hilo rojo se estira y se contrae pero siempre nos une.
+                </h2>
+            </div>
+        </div>
+
+        <!-- Memory modal -->
+        <div id="ch6-memory-modal" class="ch6-memory-modal">
+            <div class="ch6-memory-card">
+                <img id="ch6-memory-img" src="" class="ch6-memory-img">
+                <p id="ch6-memory-text" class="ch6-memory-text"></p>
+                <button class="ch6-continue-btn" onclick="ch6_resumeConnection()">Sigue el viaje</button>
+            </div>
+        </div>
+
+        <button class="ch6-nav-down" onclick="switchPanel(8)"><i class="fas fa-chevron-down"></i></button>
+    </section>
+
+    <!-- ========== PANEL FINAL (PANEL 8) ========== -->
+    <section id="panel8" class="panel panel-scrollable">
+        <button id="up-arrow-btn-panel8" onclick="switchPanel(7)" class="scroll-arrow-up"
             style="background: rgba(142,36,170,0.1); color: #8e24aa; border: 1px solid #8e24aa; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; margin-bottom: 20px; flex-shrink: 0; transition: all 0.3s ease;">
             <i class="fas fa-chevron-up"></i>
         </button>
@@ -3179,8 +3974,8 @@
             <div class="divider" style="width: 80px; height: 3px; background: #ff007f; margin: 0 auto 30px;"></div>
 
             <p style="font-size: 1.2rem; line-height: 1.7; color: #4a148c; margin-bottom: 30px; font-style: italic;">
-                "Este proyecto fue creado con el único propósito de recordarte lo valiosa que eres y lo mucho que
-                atesoro cada instante a tu lado. Gracias por permitirme ser parte de tu historia."
+                "Este proyecto fue creado con el único propósito de honrar los bonitos recuerdos y el amor que nos
+                dimos. Gracias por tu tiempo y atencion."
             </p>
 
             <div class="final-response-box">
@@ -3355,9 +4150,18 @@
             const btn = document.getElementById('music-control');
             const icon = btn.querySelector('i');
             if (audio.muted) {
-                audio.muted = false; icon.className = 'fas fa-volume-up'; btn.style.color = '#8e24aa'; btn.style.borderColor = '#8e24aa';
+                audio.muted = false;
+                icon.className = 'fas fa-volume-up';
+                btn.style.color = '#8e24aa';
+                btn.style.borderColor = '#8e24aa';
+                if (audio.paused && document.querySelector('#panel6') && !document.querySelector('#panel6').classList.contains('active')) {
+                    audio.play().catch(e => console.log(e));
+                }
             } else {
-                audio.muted = true; icon.className = 'fas fa-volume-mute'; btn.style.color = '#aaa'; btn.style.borderColor = '#aaa';
+                audio.muted = true;
+                icon.className = 'fas fa-volume-mute';
+                btn.style.color = '#aaa';
+                btn.style.borderColor = '#aaa';
             }
         }
 
@@ -3621,12 +4425,21 @@
                 const totalItems = listaIDsGallery.length;
                 const halfPoint = Math.floor(totalItems / 2);
 
-                if (index < halfPoint && !rewardPanelsDone.p3) {
-                    rewardPanelsDone.p3 = true;
-                    ganarMoneda('¡Primera Polaroid de la Parte 1! Has ganado una moneda ✨');
-                } else if (index >= halfPoint && !rewardPanelsDone.p4) {
-                    rewardPanelsDone.p4 = true;
-                    ganarMoneda('¡Primera Polaroid de la Parte 2! Has ganado una moneda ✨');
+                if (!rewardPanelsDone.p3) {
+                    const completadas = itemsDesbloqueados.filter(idx => idx < halfPoint).length;
+                    if (completadas === halfPoint) {
+                        rewardPanelsDone.p3 = true;
+                        ganarMoneda('¡Todas las Polaroid de la Parte 1! Has ganado una moneda ✨');
+                    }
+                }
+
+                if (!rewardPanelsDone.p4) {
+                    const expected = totalItems - halfPoint;
+                    const completadas2 = itemsDesbloqueados.filter(idx => idx >= halfPoint).length;
+                    if (completadas2 === expected) {
+                        rewardPanelsDone.p4 = true;
+                        ganarMoneda('¡Todas las Polaroid de la Parte 2! Has ganado una moneda ✨');
+                    }
                 }
             }
 
@@ -3880,11 +4693,11 @@
             if (!grassFloor) return;
             grassFloor.innerHTML = '';
 
-            const flowers = ['🌸', '🌹', '🌷', '✨'];
+            const flowers = ['🌸', '🌹', '🌷'];
             const posicionesConejitos = [
-                { x: 42, y: 30, size: 3.2 },
-                { x: 50, y: 45, size: 2.8 },
-                { x: 58, y: 35, size: 3.5 }
+                { x: 18, y: 35, size: 3.2 },
+                { x: 62, y: 45, size: 2.8 },
+                { x: 85, y: 30, size: 3.5 }
             ];
 
             posicionesConejitos.forEach(pos => {
@@ -3909,12 +4722,12 @@
                 // Dividir el 100% en 'totalFlores' segmentos y poner una en cada uno con un offset
                 const segmentWidth = 100 / totalFlores;
                 const x = (i * segmentWidth) + (Math.random() * (segmentWidth * 0.8));
-                const y = 15 + (Math.random() * 70); 
+                const y = 15 + (Math.random() * 70);
 
                 dec.style.left = `${x}%`;
                 dec.style.top = `${y}%`;
-                // Flores mucho más grandes (1.3rem a 2.2rem)
-                dec.style.fontSize = `${1.3 + Math.random() * 0.9}rem`;
+                // Flores mucho más grandes (1.8rem a 3.0rem)
+                dec.style.fontSize = `${1.8 + Math.random() * 1.2}rem`;
                 dec.style.animation = `sway ${3 + Math.random() * 2}s ease-in-out infinite alternate`;
                 dec.style.opacity = '0.7';
                 dec.style.zIndex = '3';
@@ -3933,22 +4746,25 @@
         basePasto.style.zIndex = '3';
         basePasto.style.pointerEvents = 'none';
 
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 35; i++) {
             const petalo = document.createElement('div');
             petalo.innerHTML = '❤';
             petalo.style.position = 'absolute';
             petalo.style.color = colors[Math.floor(randomFijo() * colors.length)];
-            petalo.style.fontSize = `${10 + randomFijo() * 14}px`;
+            // Hojas más grandes pero sin sombra dispersa para que no floten
+            petalo.style.fontSize = `${14 + randomFijo() * 18}px`;
+            petalo.style.textShadow = '0px 1px 2px rgba(0,0,0,0.15)'; // Sombra muy pegada
 
-            const xOffset = randomFijo() * 350;
-            const yOffset = randomFijo() * 40;
+            const xOffset = randomFijo() * 380 - 15;
+            // Mayor concentración hacia la base (yOffset más bajo = visualmente más abajo en este contenedor)
+            const yOffset = 15 + Math.random() * 35;
             const rotation = (randomFijo() - 0.5) * 180;
 
             petalo.style.left = `${xOffset}px`;
             petalo.style.top = `${yOffset}px`;
             petalo.style.opacity = '0';
 
-            const targetTransform = `rotate(${rotation}deg) scale(1) translate(-50%, -50%)`;
+            const targetTransform = `rotate(${rotation}deg) scale(1.1) translate(-50%, -50%)`;
             petalo.style.setProperty('--target-transform', targetTransform);
 
             const delay = 4.5 + randomFijo() * 1.5;
@@ -3977,29 +4793,34 @@
                     const savedUnlocked = JSON.parse(localStorage.getItem('unlocked_gallery_items') || "[]");
                     const totalItems = listaIDsGallery.length;
                     const halfPoint = Math.floor(totalItems / 2);
-                    if (savedUnlocked.some(idx => idx < halfPoint)) {
+                    const itemsInFirstHalf = savedUnlocked.filter(idx => idx < halfPoint).length;
+                    if (itemsInFirstHalf === halfPoint) {
                         rewardPanelsDone.p3 = true;
                         ganarMoneda('¡Ya habías completado esta parte! Aquí tienes tu moneda ✨');
                     } else {
                         currentObjectiveMet = false;
-                        warningMessage = "¡Desbloquea al menos una Polaroid en esta parte! 📸";
+                        warningMessage = `¡Desbloquea todas las Polaroid (${itemsInFirstHalf}/${halfPoint}) para avanzar! 📸`;
                     }
                 } else if (panelActualActivo === 4 && !rewardPanelsDone.p4) {
                     const savedUnlocked = JSON.parse(localStorage.getItem('unlocked_gallery_items') || "[]");
                     const totalItems = listaIDsGallery.length;
                     const halfPoint = Math.floor(totalItems / 2);
-                    if (savedUnlocked.some(idx => idx >= halfPoint)) {
+                    const expected = totalItems - halfPoint;
+                    const itemsInSecondHalf = savedUnlocked.filter(idx => idx >= halfPoint).length;
+                    if (itemsInSecondHalf === expected) {
                         rewardPanelsDone.p4 = true;
                         ganarMoneda('¡Ya habías completado esta parte! Aquí tienes tu moneda ✨');
                     } else {
                         currentObjectiveMet = false;
-                        warningMessage = "¡Hay más recuerdos esperándote aquí! 📸";
+                        warningMessage = `¡Desbloquea todas las Polaroid de esta parte (${itemsInSecondHalf}/${expected})! 📸`;
                     }
                 } else if (panelActualActivo === 5 && !rewardPanelsDone.p5) {
                     currentObjectiveMet = false;
                     warningMessage = "¡Termina de leer la carta con atención! 💌";
                 } else if (panelActualActivo === 6) {
                     currentObjectiveMet = true;
+                } else if (panelActualActivo === 7) {
+                    currentObjectiveMet = true; // Constellation is optional
                 }
 
                 if (!currentObjectiveMet) {
@@ -4053,11 +4874,46 @@
                     // Pausar música de fondo al entrar al reproductor de YouTube
                     if (audio) audio.pause();
                     const btn = document.getElementById('music-control');
-                    const icon = btn.querySelector('i');
-                    icon.className = 'fas fa-volume-mute';
+                    if (btn) {
+                        const icon = btn.querySelector('i');
+                        if (icon) icon.className = 'fas fa-volume-mute';
+                    }
+                } else if (targetPanel === 7) {
+                    // Inicializar constelación al entrar al panel 7
+                    if (typeof ch6_initConstellation === 'function') ch6_initConstellation();
 
-                    // NO CARGAR CANCIÓN AUTOMATICAMENTE (Corregido punto 4)
-                    // La rockola inicia apagada.
+                    // Cambiar a espacio.mp3
+                    if (audio && (!audio.src || !audio.src.endsWith('espacio.mp3'))) {
+                        let isMuted = audio.muted;
+                        audio.pause();
+                        audio.src = 'espacio.mp3';
+                        audio.load();
+                        audio.muted = isMuted;
+                        if (!isMuted) {
+                            audio.play().catch(e => console.log("Autoplay blocked", e));
+                            const btn = document.getElementById('music-control');
+                            if (btn && btn.querySelector('i')) btn.querySelector('i').className = 'fas fa-volume-up';
+                        }
+                    }
+                } else {
+                    // Restaurar tusgafitas.mp3 para otros paneles si venimos del panel 7
+                    if (audio && audio.src && audio.src.endsWith('espacio.mp3')) {
+                        let isMuted = audio.muted;
+                        audio.pause();
+                        audio.src = 'tusgafitas.mp3';
+                        audio.load();
+                        audio.muted = isMuted;
+                        if (!isMuted) {
+                            audio.play().catch(e => console.log("Autoplay blocked", e));
+                            const btn = document.getElementById('music-control');
+                            if (btn && btn.querySelector('i')) btn.querySelector('i').className = 'fas fa-volume-up';
+                        }
+                    } else if (audio && audio.paused && !audio.muted) {
+                        // Reanudar la música base si venimos del panel 6
+                        audio.play().catch(e => console.log("Autoplay blocked", e));
+                        const btn = document.getElementById('music-control');
+                        if (btn && btn.querySelector('i')) btn.querySelector('i').className = 'fas fa-volume-up';
+                    }
                 }
 
                 if (targetPanel === 3) {
@@ -4081,17 +4937,32 @@
         }
 
         // === 7. EFECTO MÁQUINA DE ESCRIBIR ===
-        const textoDisculpas = `Hola Angie...
+        const textoDisculpas = `Querida Angie,
 
-Quiero aprovechar este pequeño espacio para decirte lo mucho que significas para mí. A veces las palabras no salen como uno quiere, pero mi intención siempre es cuidarte y verte feliz.
+Esta carta y este sitio está realizado con un principal propósito. Durante mucho tiempo sentí que merecías unas disculpas reales, sin excusas y abriéndote mi corazón con total honestidad, espero que Dios me permita poder conseguir las palabras adecuadas y correctas para transmitir este torbellino de emociones que siento al pensar en ti.
 
-Perdóname por los momentos de tensión. Mi único deseo es que sigamos construyendo recuerdos hermosos juntos, como los que acabamos de ver en la galería.
+Me disculpo y te pido perdón por todas las veces que expresé que no estaba interesado en formar un matrimonio y formar una familia. Hoy entiendo lo contradictorio que siempre fui porque cuando la verdad es que siempre que he pensado en un sinónimo a un futuro siempre has sido tú, con la mano en el corazón reconozco que realmente sí me hace ilusión visualizarnos juntos adquiriendo nuestro primer hogar, casándonos y viajando por varios países viviendo nuestras varias lunas de miel, y sobre todo conociendo y teniendo entre mis brazos a esa niña que tanto nos imaginamos que es Samira. Reconozco que a lo largo del camino me faltó madurez dejándome llevar por lo comentarios que hace la sociedad y determinación para saber que todos los matrimonios tienen sus momentos más frágiles y difíciles pero que a tu lado abundarían más los bellos momentos y que cuando estás a mi lado siento que puedo ganarme al mundo entero y eso se logra cuando tienes una gran mujer a tu lado.
 
-Eres la persona más especial que he conocido y no cambiaría por nada cada risa, cada abrazo y cada momento a tu lado. Gracias por estar conmigo y por ser quien eres.
+Te pido perdón por todas esas veces que estuve lleno de problemas y no me refugie en ti, todo este tiempo estuve con el pensamiento erróneo que llevaba de no querer demostrarte una imagen débil o inestable de mi parte, esa serie de desaciertos míos me conllevó a refugiarme y abrir puertas en personas, fiestas y el alcohol, puertas que jamás debí haber abierto. Con todo este tiempo que ha transcurrido, con ayuda de las terapias y con el peso de tu ausencia, he podido aclarar todo lo nublado que estuvo mi mente todo este tiempo y ahora valoro más que nunca el calor y la sensación de tener un hogar cuando me acurrucabas entre tus brazos.
 
-Te amo más de lo que las palabras pueden expresar.
+Te pido perdón por los últimos meses grises que viviste conmigo, reconozco que la serie de malas decisiones que tomé últimamente opacaron tantos meses preciosos que construimos con mucho amor.
 
-Texto de prueba, posterior se modificara por el verdero texto final`;
+Y si hay algo de lo que más me arrepiento en todo este tiempo de inestabilidad emocional fue autosabotearme tanto tiempo dejándome ganar por pensamientos negativos que me hacían actuar de forma egoísta. En ese momento por mi propia inestabilidad no me permití recibir y honrar el amor tan puro que me brindabas de la manera como te merecías. Me encerré tanto en esta clase de pensamientos que no pude reconocer a tiempo que aún podía haber tomado mejores decisiones y realizar el cambio que merecías, lamento tanto tener que haber tocado fondo para darme cuenta de lo mucho que me alejé de mis propios valores y de lo que realmente importa en mi vida.
+
+
+He estado trabajando en mí. No desde la urgencia de recuperarte, sino desde la necesidad real de entenderme, de hacerme responsable y de no volver a actuar desde la inmadurez o el miedo. Aún estoy en ese proceso, pero estoy seguro que hoy tengo mucha más claridad de lo que antes no quise ver y estas disculpas son parte del proceso.
+
+Con toda la honestidad, quisiera expresarte todos los sentimientos que sigo sintiendo por ti, Angie eres el amor de mi vida y te sigo amando aún mucho, y aunque si tu con justa razón ya no quisieras seguir sabiendo de mí, ese título no te lo puede arrebatar nadie. Pienso que eres una mujer maravillosa por la que realmente vale la pena mejorar y persistir y por ello que me encuentro aquí el día de hoy. Porque hoy sé el valor que significa que tú estes en mi vida y eso vale mucho más que cualquier sentimiento de orgullo o temor al fracaso. Hoy elijo actuar con la valentía que tú y nuestra historia siempre merecieron desde un inicio.
+
+Soy consciente que a lo largo del camino extravié las coordenadas de nuestro amor, y la construcción de este pequeño libro interactivo sirvió para reencontrarme a mi mismo, y aunque siempre supe que tú eras lo que quería para mi vida, este proyecto me ha servido para obtener la determinación de esta vez no realizar promesas vacías si no verdaderamente encontrarme a tomar decisiones concretas.
+
+Finalmente te pido perdón, por estos meses de alejamiento, entiendo que debiste sentirte sola, confundida y quizá no valorada durante todo este tiempo. Erróneamente creía que estaba haciendo lo correcto respetar tu proceso de sanación, y aunque con todo esto no busco irrespetarlo, si aún existe, aunque sea un 1% de posibilidades de que tú y yo podamos volver a ser felices, estoy decidido a arriesgarlo todo por ti, intentándolo nuevamente, pero esta vez de la manera correcta como una dama como tú se merece.
+
+
+La preparación de todo este proyecto ha demandado bastantes semanas de desarrollo, dedicación y trasnochadas que no me arrepiento para nada, personalmente me encuentro contento con el resultado pues un detalle para el amor de mi vida demanda que sea algo perfecto y bonito, espero poderte haber podido robar alguna sonrisa.
+
+
+He preparado todo esto, con mucho respeto y amor para ti, discúlpame si esta manera virtual no cumplió con lo que tú desearías, honestamente quise ofrecerte algo artesanal que sepas que hubo trabajo y esfuerzo por parte mía y esto es lo que mejor se me da. Pero ten por segura que si me permites invitarte un café, puedo expresarte todos estos sentimientos de manera personal y tener una conversación tranquila siempre desde el respeto. Sé que todo esto es difícil de procesar y si consideras que aún no te sientes preparada para tener esa conversación, sabré esperar con paciencia, porque entiendo y priorizo tus sentimientos y tu bienestar.`;
 
         let escrituraIniciada = false;
         function iniciarEscritura() {
@@ -4262,9 +5133,9 @@ Texto de prueba, posterior se modificara por el verdero texto final`;
                         canvas.removeEventListener("touchstart", scratchStart);
                         canvas.removeEventListener("touchmove", scratchMove);
 
-                        // RECOMPENSA: Una moneda solo al completar TODAS las tarjetas del panel 2
+                        // RECOMPENSA: Una moneda solo al completar TODAS las tarjetas del panel 2 (4 fotos + 1 carta = 5)
                         scratchCardsCompletedCount++;
-                        if (scratchCardsCompletedCount >= 4 && !rewardPanelsDone.p2) {
+                        if (scratchCardsCompletedCount >= 5 && !rewardPanelsDone.p2) {
                             rewardPanelsDone.p2 = true;
                             ganarMoneda('¡Todos los recuerdos rascados! Has ganado una moneda ✨');
                         }
@@ -4273,10 +5144,13 @@ Texto de prueba, posterior se modificara por el verdero texto final`;
                         canvas.style.opacity = "0";
                         setTimeout(() => {
                             canvas.style.display = "none";
+                            // Habilitar interacción con la recompensa (ej. scroll de la carta)
+                            const reward = canvas.parentElement.querySelector('.scratch-reward');
+                            if (reward) reward.style.pointerEvents = "auto";
+
                             // Habilitar clic en la imagen para abrir el visor
                             const imgNode = canvas.parentElement.querySelector('img');
                             if (imgNode) {
-                                imgNode.style.pointerEvents = "auto";
                                 imgNode.style.cursor = "zoom-in";
                                 imgNode.addEventListener("click", () => {
                                     openImageViewer(imgNode.src);
@@ -4579,7 +5453,313 @@ Texto de prueba, posterior se modificara por el verdero texto final`;
         // Iniciar en la carga
         initScratchCards();
 
+        // ============================================================
+        // === CAPÍTULO 6: LA NOCHE ESTRELLADA (CONSTELLATION LOGIC) ===
+        // ============================================================
+        (function () {
+            const ch6Canvas = document.getElementById('ch6-canvas');
+            const ch6Ctx = ch6Canvas.getContext('2d');
+            const ch6Victory = document.getElementById('ch6-victory');
+            const ch6Instruction = document.getElementById('ch6-instruction');
+            const ch6MemoryModal = document.getElementById('ch6-memory-modal');
+            const ch6MemoryImg = document.getElementById('ch6-memory-img');
+            const ch6MemoryText = document.getElementById('ch6-memory-text');
+
+            let ch6W, ch6H;
+            let ch6Stars = [];
+            let ch6Interactive = [];
+            let ch6Connected = 0;
+            let ch6IsVictory = false;
+            let ch6IsAnimating = false;
+            let ch6Ripples = [];
+            let ch6AutoTimer;
+            let ch6XOffset = 0;
+            let ch6Initialized = false;
+            let ch6AnimFrameId;
+
+            function ch6_generateHeartPath() {
+                return [
+                    { x: 50, y: 92 }, { x: 25, y: 75 }, { x: 10, y: 55 },
+                    { x: 8, y: 35 }, { x: 15, y: 15 }, { x: 32, y: 12 },
+                    { x: 50, y: 30 }, { x: 68, y: 12 }, { x: 85, y: 15 },
+                    { x: 92, y: 35 }, { x: 90, y: 55 }, { x: 75, y: 75 },
+                    { x: 50, y: 92 }
+                ];
+            }
+
+            const ch6Memories = [
+                { img: 'img/capitulo6/primeracita.gif', text: "08 de Abril del 2023 - Nuestra primera cita." },
+                { img: 'img/capitulo6/15abril.gif', text: "15 de Abril del 2023 - El inicio de esta preciosa relación." },
+                { img: 'img/capitulo6/primerviaje.gif', text: "01 de Mayo del 2023 - Nuestro primer viaje juntos." },
+                { img: 'img/capitulo6/cuenca.gif', text: "23 de Septiembre del 2023 - Viaje a Cuenca." },
+                { img: 'img/capitulo6/galapagos.jpeg', text: "10 de Febrero del 2024 - Viaje a Galapagos." },
+                { img: 'img/capitulo6/primeraboda.jpeg', text: "06 de Julio del 2024 - Nuestra primera boda juntos." },
+                { img: 'img/capitulo6/Quito.gif', text: "29 de Marzo del 2025 - Nuestro viaje a Quito." }
+            ];
+
+            const ch6HeartPath = ch6_generateHeartPath();
+            const ch6MemoryIndices = [1, 3, 5, 7, 9, 11];
+
+            class Ch6Ripple {
+                constructor(x, y, color = "rgba(255,255,255,1)") {
+                    this.x = x; this.y = y; this.size = 2; this.opacity = 1; this.color = color;
+                }
+                update() { this.size += 5; this.opacity -= 0.04; }
+                draw() {
+                    ch6Ctx.beginPath(); ch6Ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ch6Ctx.strokeStyle = this.color.replace("1)", `${this.opacity})`);
+                    ch6Ctx.lineWidth = 3; ch6Ctx.stroke();
+                }
+            }
+
+            function ch6_drawStar(ctx, x, y, spikes, outerR, innerR) {
+                let rot = Math.PI / 2 * 3; let step = Math.PI / spikes;
+                ctx.beginPath(); ctx.moveTo(x, y - outerR);
+                for (let i = 0; i < spikes; i++) {
+                    ctx.lineTo(x + Math.cos(rot) * outerR, y + Math.sin(rot) * outerR); rot += step;
+                    ctx.lineTo(x + Math.cos(rot) * innerR, y + Math.sin(rot) * innerR); rot += step;
+                }
+                ctx.lineTo(x, y - outerR); ctx.closePath(); ctx.fill();
+            }
+
+            class Ch6Star {
+                constructor(isInteractive, tx, ty, index) {
+                    this.isInteractive = isInteractive; this.index = index; this.tx = tx; this.ty = ty;
+                    this.reset();
+                }
+                reset() {
+                    if (this.isInteractive) {
+                        const sizeBase = Math.min(ch6W, ch6H);
+                        const hW = sizeBase * (ch6W < 600 ? 0.88 : 0.72);
+                        const hH = sizeBase * (ch6W < 600 ? 0.76 : 0.68);
+                        const offsetX = (ch6W - hW) / 2;
+                        const offsetY = (ch6H - hH) / 2 + (ch6W < 600 ? 25 : 65);
+                        this.x = (this.tx / 100) * hW + offsetX;
+                        this.y = (this.ty / 100) * hH + offsetY;
+                        this.size = ch6W < 700 ? 12 : 15;
+                        this.connected = false;
+                    } else {
+                        this.x = Math.random() * ch6W; this.y = Math.random() * ch6H; this.size = Math.random() * 2.5;
+                    }
+                    this.opacity = Math.random(); this.blinkSpeed = 0.01 + Math.random() * 0.02; this.pulse = 0;
+                }
+                update() {
+                    this.opacity += this.blinkSpeed;
+                    if (this.opacity > 1 || this.opacity < 0.3) this.blinkSpeed *= -1;
+                    this.pulse += 0.08;
+                }
+                draw() {
+                    let dx = ch6IsVictory ? ch6XOffset : 0;
+                    let actualX = this.x + dx;
+                    if (this.isInteractive) {
+                        const isTarget = (this.index === ch6Connected && !ch6IsAnimating && !ch6IsVictory);
+                        const isNextToConnect = (ch6IsAnimating && this.index === ch6Connected + 1);
+                        if (this.index > ch6Connected && !ch6IsVictory && !isTarget && !isNextToConnect) return;
+
+                        if (isTarget) {
+                            ch6Ctx.beginPath();
+                            ch6Ctx.arc(actualX, this.y, this.size * (2.2 + Math.sin(this.pulse) * 0.4), 0, Math.PI * 2);
+                            ch6Ctx.fillStyle = `rgba(255,255,255,0.12)`; ch6Ctx.fill();
+                        }
+
+                        let opacity = ch6IsVictory ? (0.6 + Math.sin(Date.now() * 0.01) * 0.4) : this.opacity;
+                        ch6Ctx.fillStyle = (this.connected || (ch6IsAnimating && this.index <= ch6Connected)) ? '#fffce0' : (isTarget ? '#ffffff' : `rgba(255,252,224,${opacity})`);
+                        ch6Ctx.shadowBlur = (this.connected || isTarget || ch6IsAnimating || ch6IsVictory) ? (ch6IsVictory ? 40 : 25) : 0;
+                        ch6Ctx.shadowColor = (this.connected || ch6IsVictory) ? (ch6IsVictory ? '#fffce0' : '#ffffff') : '#ffffff';
+                        ch6_drawStar(ch6Ctx, actualX, this.y, 5, this.size, this.size / 2.5);
+                        ch6Ctx.shadowBlur = 0;
+
+                        if (!this.connected && !ch6IsVictory && this.index === 0 && !ch6IsAnimating) {
+                            ch6Ctx.font = `bold ${ch6W < 700 ? '16px' : '20px'} Inter`;
+                            ch6Ctx.fillStyle = "#ffffff"; ch6Ctx.textAlign = "center";
+                            ch6Ctx.fillText("Toca para observar", actualX, this.y + 40);
+                        }
+                    } else {
+                        ch6Ctx.fillStyle = `rgba(255,252,224,${this.opacity})`;
+                        ch6_drawStar(ch6Ctx, actualX, this.y, 4, this.size, this.size / 4);
+                    }
+                }
+            }
+
+            function ch6_init() {
+                if (ch6Initialized) return;
+                ch6Initialized = true;
+                ch6_resize();
+                ch6Stars = Array.from({ length: 120 }, () => new Ch6Star(false));
+                ch6Interactive = ch6HeartPath.map((p, i) => new Ch6Star(true, p.x, p.y, i));
+                ch6_animate();
+            }
+
+            function ch6_resize() {
+                const panel = document.getElementById('panel7');
+                ch6W = panel.clientWidth; ch6H = panel.clientHeight;
+                ch6Canvas.width = ch6W; ch6Canvas.height = ch6H;
+                ch6Interactive.forEach(s => s.reset());
+            }
+
+            function ch6_animate() {
+                ch6Ctx.clearRect(0, 0, ch6W, ch6H);
+                if (ch6IsVictory) {
+                    const targetXOffset = -ch6W * 0.22;
+                    ch6XOffset += (targetXOffset - ch6XOffset) * 0.05;
+                    ch6Ctx.beginPath();
+                    let dx = ch6XOffset;
+                    ch6Ctx.moveTo(ch6Interactive[0].x + dx, ch6Interactive[0].y);
+                    for (let i = 1; i < ch6Interactive.length; i++) ch6Ctx.lineTo(ch6Interactive[i].x + dx, ch6Interactive[i].y);
+                    ch6Ctx.strokeStyle = "rgba(255,30,86,0.3)"; ch6Ctx.stroke();
+                }
+                ch6Stars.forEach(s => { s.update(); s.draw(); });
+                if (ch6Connected > 0) {
+                    ch6Ctx.beginPath();
+                    let dx = ch6IsVictory ? ch6XOffset : 0;
+                    ch6Ctx.moveTo(ch6Interactive[0].x + dx, ch6Interactive[0].y);
+                    ch6Ctx.lineWidth = ch6W < 700 ? 5 : 8;
+                    ch6Ctx.strokeStyle = '#ff1e56';
+                    ch6Ctx.shadowBlur = ch6IsVictory ? (25 + Math.sin(Date.now() * 0.01) * 15) : 30;
+                    ch6Ctx.shadowColor = '#ff4d6d';
+                    ch6Ctx.lineCap = 'round'; ch6Ctx.lineJoin = 'round';
+                    const limit = Math.min(ch6Connected, ch6Interactive.length - 1);
+                    for (let i = 1; i <= limit; i++) ch6Ctx.lineTo(ch6Interactive[i].x + dx, ch6Interactive[i].y);
+                    ch6Ctx.stroke(); ch6Ctx.shadowBlur = 0;
+                }
+                ch6Interactive.forEach(s => { s.update(); s.draw(); });
+                ch6Ripples.forEach((r, i) => { r.update(); r.draw(); if (r.opacity <= 0) ch6Ripples.splice(i, 1); });
+                ch6AnimFrameId = requestAnimationFrame(ch6_animate);
+            }
+
+            function ch6_handleInput(ex, ey) {
+                if (ch6IsVictory || ch6IsAnimating) return;
+                // Adjust coords relative to panel7
+                const panelRect = document.getElementById('panel7').getBoundingClientRect();
+                const rx = ex - panelRect.left;
+                const ry = ey - panelRect.top;
+                const startStar = ch6Interactive[0];
+                const dist = Math.hypot(rx - startStar.x, ry - startStar.y);
+                if (dist < 100) ch6_startAutoConnection();
+                ch6Ripples.push(new Ch6Ripple(rx, ry));
+            }
+
+            function ch6_startAutoConnection() {
+                if (ch6IsAnimating) return;
+                ch6IsAnimating = true;
+                ch6Instruction.style.opacity = "0";
+                ch6_runAutoStep();
+            }
+
+            function ch6_runAutoStep() {
+                if (ch6Connected >= ch6Interactive.length - 1) {
+                    ch6_showMemory(6); return;
+                }
+                ch6AutoTimer = setInterval(() => {
+                    ch6Connected++;
+                    ch6Interactive[ch6Connected].connected = true;
+                    ch6Ripples.push(new Ch6Ripple(ch6Interactive[ch6Connected].x, ch6Interactive[ch6Connected].y, "rgba(255,30,86,1)"));
+
+                    const memIndex = ch6MemoryIndices.indexOf(ch6Connected);
+                    if (memIndex !== -1) {
+                        ch6_pauseAndShowMemory(memIndex);
+                    }
+
+                    if (ch6Connected >= ch6Interactive.length - 1) {
+                        clearInterval(ch6AutoTimer);
+                        ch6_showMemory(6);
+                    }
+                }, 600);
+            }
+
+            function ch6_pauseAndShowMemory(idx) {
+                clearInterval(ch6AutoTimer);
+                setTimeout(() => { ch6_showMemory(idx); }, 500);
+            }
+
+            function ch6_showMemory(idx) {
+                const memory = ch6Memories[idx];
+                ch6MemoryImg.src = memory.img;
+                ch6MemoryText.innerText = memory.text;
+                ch6MemoryModal.classList.add('show');
+            }
+
+            window.ch6_resumeConnection = function () {
+                ch6MemoryModal.classList.remove('show');
+                if (ch6Connected >= ch6Interactive.length - 1) {
+                    ch6_triggerVictory();
+                } else {
+                    setTimeout(ch6_runAutoStep, 400);
+                }
+            };
+
+            function ch6_triggerVictory() {
+                ch6IsVictory = true; ch6IsAnimating = false;
+                setTimeout(() => { ch6Victory.classList.add('show'); }, 500);
+            }
+
+            // --- Rocket Launch ---
+            let ch6SystemsReady = [false, false, false];
+
+            window.ch6_toggleKnob = function (idx, el) {
+                if (document.getElementById('ch6-launch-pad').classList.contains('igniting')) return;
+                ch6SystemsReady[idx] = !ch6SystemsReady[idx];
+                el.classList.toggle('active');
+                ch6_checkSystems();
+            };
+
+            function ch6_checkSystems() {
+                const btn = document.getElementById('ch6-launch-btn');
+                const legend = document.getElementById('ch6-legend');
+                if (ch6SystemsReady.every(s => s)) {
+                    btn.classList.add('ready');
+                    legend.classList.add('fade-out');
+                } else {
+                    btn.classList.remove('ready');
+                    legend.classList.remove('fade-out');
+                }
+            }
+
+            window.ch6_startCountdown = function () {
+                const pad = document.getElementById('ch6-launch-pad');
+                const btn = document.getElementById('ch6-launch-btn');
+                const rocket = document.getElementById('ch6-rocket');
+                const panelWrapper = document.getElementById('ch6-control-wrapper');
+
+                if (pad.classList.contains('igniting')) return;
+                pad.classList.add('igniting');
+                btn.style.opacity = "0";
+                panelWrapper.style.opacity = "0";
+                panelWrapper.style.transform = "translateY(50px)";
+                panelWrapper.style.transition = "all 0.8s ease";
+
+                setTimeout(() => {
+                    rocket.classList.add('ch6-launch-away');
+                    setTimeout(() => {
+                        pad.style.opacity = "0";
+                        document.getElementById('ch6-bg').classList.add('ch6-content-visible');
+                        document.getElementById('ch6-sky').classList.add('ch6-content-visible');
+                        document.getElementById('ch6-canvas').classList.add('ch6-content-visible');
+                        document.getElementById('ch6-ui').classList.add('ch6-content-visible');
+                        setTimeout(() => { pad.style.display = "none"; }, 3000);
+                    }, 1200);
+                }, 1800);
+            };
+
+            // Expose init for switchPanel
+            window.ch6_initConstellation = function () {
+                ch6_init();
+            };
+
+            // Resize handler
+            window.addEventListener('resize', () => {
+                if (ch6Initialized) ch6_resize();
+            });
+
+            // Pointer events on the constellation canvas
+            ch6Canvas.addEventListener('pointerdown', (e) => {
+                ch6_handleInput(e.clientX, e.clientY);
+            });
+            ch6Canvas.addEventListener('touchstart', (e) => e.preventDefault(), { passive: false });
+        })();
+
     </script>
+
 
     <!-- Modal Visor de Imágenes -->
     <div id="image-viewer-modal">
