@@ -135,6 +135,34 @@
             filter: brightness(1.1);
         }
 
+        .btn-help {
+            background-color: #ff9800;
+            /* Orange color for help */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .btn-help:hover {
+            background-color: #e68a00;
+        }
+
+        .btn-help:active {
+            transform: scale(0.95);
+        }
+
+        .btn-help:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .message {
             font-size: 1.5rem;
             font-weight: bold;
@@ -165,6 +193,9 @@
 
         <p>Vidas restantes: <b id="attempts-left">5</b></p>
 
+        <button class="btn-help" id="btn-help" onclick="useHelp()">💡 Pista (<span id="help-count">2</span>
+            restantes)</button>
+
         <div class="word-display" id="word-display">_ _ _ _ _ _ _ _ _ _</div>
 
         <div class="message" id="game-message"></div>
@@ -184,6 +215,7 @@
         let word = words[currentWordIndex];
         let guessedLetters = [];
         let attemptsLeft = 5;
+        let helpsLeft = 2; // Initialize helps
         const alphabet = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
 
         const wordDisplay = document.getElementById("word-display");
@@ -192,6 +224,8 @@
         const gameMessage = document.getElementById("game-message");
         const btnRestart = document.getElementById("btn-restart");
         const hangmanDrawing = document.getElementById("hangman-drawing");
+        const btnHelp = document.getElementById("btn-help");
+        const helpCountDisplay = document.getElementById("help-count");
 
         // Etapas de dibujo simples usando emojis/iconos
         const hangmanSteps = [
@@ -207,9 +241,15 @@
             word = words[currentWordIndex];
             guessedLetters = [];
             attemptsLeft = 5;
+            helpsLeft = 2; // Reset helps on new game
+
             gameMessage.style.display = 'none';
             btnRestart.style.display = 'none';
             keyboard.style.display = 'flex';
+
+            btnHelp.disabled = false;
+            helpCountDisplay.innerText = helpsLeft;
+            btnHelp.style.display = 'inline-block'; // Ensure button is visible
 
             updateDisplay();
             updateKeyboard();
@@ -276,8 +316,43 @@
             updateHangman();
         }
 
+        function useHelp() {
+            if (helpsLeft > 0 && attemptsLeft > 0) {
+                // Find all unguessed letters in the current word
+                let unguessedLetters = [];
+                for (let i = 0; i < word.length; i++) {
+                    if (!guessedLetters.includes(word[i])) {
+                        if (!unguessedLetters.includes(word[i])) { // Avoid duplicates in the array
+                            unguessedLetters.push(word[i]);
+                        }
+                    }
+                }
+
+                // If there are unguessed letters, pick a random one
+                if (unguessedLetters.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * unguessedLetters.length);
+                    const letterToReveal = unguessedLetters[randomIndex];
+
+                    // Add the letter to guessedLetters (it counts as a correct guess)
+                    guessedLetters.push(letterToReveal);
+
+                    helpsLeft--;
+                    helpCountDisplay.innerText = helpsLeft;
+
+                    if (helpsLeft === 0) {
+                        btnHelp.disabled = true;
+                    }
+
+                    updateDisplay();
+                    updateKeyboard();
+                    updateHangman();
+                }
+            }
+        }
+
         function endGame(won) {
             keyboard.style.display = 'none';
+            btnHelp.style.display = 'none'; // Hide help button when game ends
             gameMessage.style.display = 'block';
             btnRestart.style.display = 'inline-block';
 
