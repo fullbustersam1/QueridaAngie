@@ -3097,6 +3097,7 @@
 
         #panel7 .ch6-launch-btn.ready {
             opacity: 1;
+            pointer-events: auto;
         }
 
         @keyframes shake-toast {
@@ -3502,9 +3503,6 @@
         <span class="float-label">🎵 Música</span>
     </div>
 
-
-
-
     <div id="mobile-warning">
         <div class="warning-card">
             <div class="warning-icon"><i class="fas fa-mobile-alt"></i></div>
@@ -3842,10 +3840,12 @@
             <span
                 style="color: #8e24aa; font-weight: bold; display: flex; align-items: center; margin-right: 5px;">Velocidad:</span>
             <button class="btn-speed active" id="btn-speed-1" onclick="cambiarVelocidadEscritura(1)">x1</button>
-            <button class="btn-speed" id="btn-speed-2" onclick="cambiarVelocidadEscritura(2)">x2</button>
             <button class="btn-speed" id="btn-speed-4" onclick="cambiarVelocidadEscritura(4)">x4</button>
             <button class="btn-speed" id="btn-speed-8" onclick="cambiarVelocidadEscritura(8)">x8</button>
             <button class="btn-speed" id="btn-speed-16" onclick="cambiarVelocidadEscritura(16)">x16</button>
+            <button class="btn-speed" id="btn-speed-64" onclick="cambiarVelocidadEscritura(64)">x64</button>
+            <button class="btn-speed" style="background: #ff007f; color: white; border-color: #ff007f;"
+                onclick="omitirAnimacionEscritura()">Omitir</button>
         </div>
 
         <div class="letter-paper" id="apology-letter">
@@ -4309,7 +4309,7 @@
         }
 
         // === 2. LÓGICA DE TERNURA (MARIPOSAS) ===
-        const MODO_PRUEBAS = true; // Activo a petición del usuario
+        const MODO_PRUEBAS = false; // Activo a petición del usuario
         let scoreTernura = 0;
         let memoriasDesbloqueadas = false;
 
@@ -5090,6 +5090,13 @@
             document.getElementById(`btn-speed-${multiplicador}`).classList.add('active');
         }
 
+        // Variable para cancelar la animación
+        let saltarEscritura = false;
+
+        function omitirAnimacionEscritura() {
+            saltarEscritura = true;
+        }
+
         // === 7. EFECTO MÁQUINA DE ESCRIBIR ===
         const textoDisculpas = `Querida Angie,
 
@@ -5534,6 +5541,40 @@ He preparado todo esto, con mucho respeto y amor para ti, discúlpame si esta ma
         }
 
         function processCoinDrop(coin) {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                const ctx = new AudioContext();
+
+                // Primera nota (rápida)
+                const osc1 = ctx.createOscillator();
+                const gain1 = ctx.createGain();
+                osc1.type = 'sine';
+                osc1.frequency.setValueAtTime(987.77, ctx.currentTime); // Nota Si (B5)
+                gain1.gain.setValueAtTime(0, ctx.currentTime);
+                gain1.gain.linearRampToValueAtTime(0.3, ctx.currentTime + 0.02);
+                gain1.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+                osc1.connect(gain1);
+                gain1.connect(ctx.destination);
+                osc1.start(ctx.currentTime);
+                osc1.stop(ctx.currentTime + 0.1);
+
+                // Segunda nota (más alta y con resonancia)
+                const osc2 = ctx.createOscillator();
+                const gain2 = ctx.createGain();
+                osc2.type = 'sine';
+                osc2.frequency.setValueAtTime(1318.51, ctx.currentTime + 0.1); // Nota Mi (E6)
+                gain2.gain.setValueAtTime(0, ctx.currentTime + 0.1);
+                gain2.gain.linearRampToValueAtTime(0.3, ctx.currentTime + 0.12);
+                gain2.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
+                osc2.connect(gain2);
+                gain2.connect(ctx.destination);
+                osc2.start(ctx.currentTime + 0.1);
+                osc2.stop(ctx.currentTime + 0.4);
+            } catch (e) {
+                console.log("Tu navegador no soporta Web Audio API", e);
+            }
+            // ----------------------------------------------------------------
+
             coin.style.transition = 'all 0.3s ease';
             coin.style.transform = 'scale(0.1)';
             coin.style.opacity = '0';
@@ -5559,6 +5600,7 @@ He preparado todo esto, con mucho respeto y amor para ti, discúlpame si esta ma
                     d.innerText = 'CREDIT: ' + unclockedCount;
                 }
             }, 300);
+
         }
 
         function enviarRespuestaAngie() {
