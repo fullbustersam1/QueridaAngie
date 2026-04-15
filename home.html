@@ -3453,6 +3453,42 @@
             transition: all 0.3s ease;
             z-index: 200;
         }
+
+        /* ==========================================
+           CONTROLES DE VELOCIDAD DE LA CARTA
+           ========================================== */
+        .speed-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            z-index: 10;
+        }
+
+        .btn-speed {
+            background: rgba(255, 255, 255, 0.6);
+            border: 2px solid #ce93d8;
+            color: #8e24aa;
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-speed:hover {
+            background: #f3e5f5;
+            transform: translateY(-2px);
+        }
+
+        .btn-speed.active {
+            background: #8e24aa;
+            color: white;
+            border-color: #8e24aa;
+            box-shadow: 0 4px 10px rgba(142, 36, 170, 0.3);
+        }
     </style>
 </head>
 
@@ -3801,6 +3837,14 @@
             style="background: rgba(255,255,255,0.8); color: #8e24aa; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; margin-bottom: 30px; flex-shrink: 0;">
             <i class="fas fa-chevron-up"></i>
         </button>
+
+        <div class="speed-controls">
+            <span
+                style="color: #8e24aa; font-weight: bold; display: flex; align-items: center; margin-right: 5px;">Velocidad:</span>
+            <button class="btn-speed active" id="btn-speed-1" onclick="cambiarVelocidadEscritura(1)">x1</button>
+            <button class="btn-speed" id="btn-speed-2" onclick="cambiarVelocidadEscritura(2)">x2</button>
+            <button class="btn-speed" id="btn-speed-4" onclick="cambiarVelocidadEscritura(4)">x4</button>
+        </div>
 
         <div class="letter-paper" id="apology-letter">
             <div class="letter-photo-frame">
